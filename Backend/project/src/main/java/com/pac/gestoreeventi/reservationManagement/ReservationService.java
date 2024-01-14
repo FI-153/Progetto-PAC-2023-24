@@ -1,6 +1,6 @@
 package com.pac.gestoreeventi.reservationManagement;
 
-import com.pac.gestoreeventi.eventsManagement.EventDTO;
+
 import com.pac.gestoreeventi.eventsManagement.EventService;
 import com.pac.gestoreeventi.profileManagement.ProfileService;
 import org.modelmapper.ModelMapper;
@@ -51,5 +51,15 @@ public class ReservationService implements ReservationManagementIF{
     public List<ReservationDTO> getReservations() {
         return reservationRepository.findAll().stream()
                 .map(reservation -> modelMapper.map(reservation, ReservationDTO.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public Reservation getReservations(Integer idReservation) {
+        Optional<Reservation> reservation = reservationRepository.findById(idReservation);
+
+        if(!reservation.isPresent()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No reservation found");
+        }
+        return reservation.get();
     }
 }

@@ -8,4 +8,6 @@ public interface ReservationManagementIF {
     void deleteReservation(Integer idReservation);
 
     List<ReservationDTO> getReservations();
+
+    Reservation getReservations(Integer idReservation);
 }

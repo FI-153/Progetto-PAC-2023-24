@@ -26,6 +26,11 @@ public class ReservationController {
         return reservationService.getReservations();
     }
 
+    @GetMapping(path = "/profile/reservations/{idReservation}")
+    public Reservation getReservation(@PathVariable("idReservation") Integer idReservation){
+        return reservationService.getReservations(idReservation);
+    }
+
     @DeleteMapping(path = "/profile/{idReservation}")
     public String deleteEvent(@PathVariable("idReservation") Integer idReservation){
         reservationService.deleteReservation(idReservation);

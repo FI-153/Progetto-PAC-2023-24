@@ -11,6 +11,15 @@ public class ReservationDTO {
     private Date datetime;
     private Boolean confirmation;
 
+    public ReservationDTO(){
+
+    }
+    public ReservationDTO(Reservation reservation){
+        idReservation = reservation.getId();
+        idEvent = reservation.getEvent().getId();
+        datetime = reservation.getDatetime();
+        confirmation = reservation.getConfirmation();
+    }
     public void setIdProfile(Integer idProfile) {
         this.idProfile = idProfile;
     }
@@ -29,6 +38,10 @@ public class ReservationDTO {
 
     public Integer getIdReservation() {
         return idReservation;
+    }
+
+    public void setIdReservation(Integer idReservation) {
+        this.idReservation = idReservation;
     }
 
     public Integer getIdProfile() {

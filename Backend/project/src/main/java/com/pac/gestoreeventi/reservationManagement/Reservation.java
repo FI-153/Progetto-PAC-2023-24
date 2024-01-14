@@ -39,7 +39,8 @@ public class Reservation {
     public Reservation() {
 
     }
-    public Reservation(Date datetime,Boolean confirmation) {
+    public Reservation(Integer id,Date datetime,Boolean confirmation) {
+            this.id = id;
             this.datetime =  datetime;
             this.confirmation =  confirmation;
     }
