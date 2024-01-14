@@ -2,6 +2,8 @@ package com.pac.gestoreeventi.reservationManagement;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class ReservationController {
 
@@ -17,6 +19,11 @@ public class ReservationController {
     private String createReservation(@RequestBody ReservationDTO  reservationDTO){
             reservationService.createReservation(reservationDTO);
             return "Aggiunta nuova prenotazione";
+    }
+
+    @GetMapping (path = "events/reservation")
+    private List<ReservationDTO> getReservation(){
+        return reservationService.getReservations();
     }
 
     @DeleteMapping(path = "/profile/{idReservation}")

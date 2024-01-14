@@ -1,5 +1,6 @@
 package com.pac.gestoreeventi.reservationManagement;
 
+import com.pac.gestoreeventi.eventsManagement.EventDTO;
 import com.pac.gestoreeventi.eventsManagement.EventService;
 import com.pac.gestoreeventi.profileManagement.ProfileService;
 import org.modelmapper.ModelMapper;
@@ -8,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservationService implements ReservationManagementIF{
@@ -42,5 +45,11 @@ public class ReservationService implements ReservationManagementIF{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Request received. No reservation to delete found");
         }
         reservationRepository.delete(reservation.get());
+    }
+
+    @Override
+    public List<ReservationDTO> getReservations() {
+        return reservationRepository.findAll().stream()
+                .map(reservation -> modelMapper.map(reservation, ReservationDTO.class)).collect(Collectors.toList());
     }
 }

@@ -1,5 +1,6 @@
 package com.pac.gestoreeventi.profileManagement;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pac.gestoreeventi.eventsManagement.Event;
 import com.pac.gestoreeventi.reservationManagement.Reservation;
 
@@ -34,9 +35,11 @@ public class Profile {
     private ProfileRole profileRole;
 
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Event> events = new ArrayList<>();
 
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Reservation> reservations = new ArrayList<>();
 
     public Profile(){
