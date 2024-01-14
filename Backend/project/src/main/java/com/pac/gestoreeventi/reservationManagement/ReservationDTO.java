@@ -4,18 +4,18 @@ package com.pac.gestoreeventi.reservationManagement;
 import java.util.Date;
 
 public class ReservationDTO {
-    private Long idReservation;
+    private Integer idReservation;
 
-    private Long idProfile;
-    private Long idEvent;
+    private Integer idProfile;
+    private Integer idEvent;
     private Date datetime;
     private Boolean confirmation;
 
-    public void setIdProfile(Long idProfile) {
+    public void setIdProfile(Integer idProfile) {
         this.idProfile = idProfile;
     }
 
-    public void setIdEvent(Long idEvent) {
+    public void setIdEvent(Integer idEvent) {
         this.idEvent = idEvent;
     }
 
@@ -27,15 +27,15 @@ public class ReservationDTO {
         this.confirmation = confirmation;
     }
 
-    public Long getIdReservation() {
+    public Integer getIdReservation() {
         return idReservation;
     }
 
-    public Long getIdProfile() {
+    public Integer getIdProfile() {
         return idProfile;
     }
 
-    public Long getIdEvent() {
+    public Integer getIdEvent() {
         return idEvent;
     }
 

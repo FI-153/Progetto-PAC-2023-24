@@ -20,13 +20,14 @@ public class EventController {
 	}
 
 	@GetMapping(path = "/events/{idEvent}")
-	public Event getEvent(@PathVariable("idEvent") long idEvent){return eventService.getEvent(idEvent);}
+	public Event getEvent(@PathVariable("idEvent") Integer idEvent){return eventService.getEvent(idEvent);}
 
 	@PostMapping(path = "/events/new")
 	public String insertEvent(@RequestBody EventDTO eventDTO){
 			eventService.insertEvent(eventDTO);
 			return "Aggiunto nuovo evento";
 	}
+	
 	@DeleteMapping(path = "/events/{idEvent}")
-	public String deleteEvent(@PathVariable("idEvent") Long idEvent){eventService.deleteEvent(idEvent); return "Evento eliminato";}
+	public String deleteEvent(@PathVariable("idEvent") Integer idEvent){eventService.deleteEvent(idEvent); return "Evento eliminato";}
 }

@@ -35,7 +35,7 @@ public class ReservationService implements ReservationManagementIF{
     }
 
     @Override
-    public void deleteReservation(Long idReservation) {
+    public void deleteReservation(Integer idReservation) {
         Optional<Reservation> reservation = reservationRepository.findById(idReservation);
 
         if(!reservation.isPresent()) {

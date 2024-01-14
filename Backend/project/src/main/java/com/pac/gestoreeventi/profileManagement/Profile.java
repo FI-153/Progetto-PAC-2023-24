@@ -1,9 +1,10 @@
 package com.pac.gestoreeventi.profileManagement;
 
+import com.pac.gestoreeventi.eventsManagement.Event;
 import com.pac.gestoreeventi.reservationManagement.Reservation;
 
 import javax.persistence.*;
-import javax.persistence.Id;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
 public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Integer id;
 
     @Column
     private String firstName;
@@ -33,13 +34,16 @@ public class Profile {
     private ProfileRole profileRole;
 
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Event> events = new ArrayList<>();
+
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Reservation> reservations = new ArrayList<>();
 
     public Profile(){
 
     }
 
-    public Profile(long id, String firstName, String lastName, String email, String password, ProfileRole profileRole){
+    public Profile(Integer id, String firstName, String lastName, String email, String password, ProfileRole profileRole){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -88,10 +92,18 @@ public class Profile {
         return profileRole;
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Event event) {
+        this.events.add(event);
+    }
+    
     public List<Reservation> getReservations() {
         return reservations;
     }

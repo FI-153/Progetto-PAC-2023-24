@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.pac.gestoreeventi.profileManagement.Profile;
 import com.pac.gestoreeventi.reservationManagement.Reservation;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -16,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Integer id;
 
     @Column
     private String name;
@@ -56,6 +57,10 @@ public class Event {
 
     @Column
     private Time time;
+    
+    @ManyToOne
+    @JoinColumn(name = "idProfile")
+    private Profile profile;
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Reservation> reservations = new ArrayList<>();
@@ -63,7 +68,7 @@ public class Event {
     public Event() {
     }
 
-    public Event(long id, String name, String place, EventLevel difficulty, Date date, String description,
+    public Event(Integer id, String name, String place, EventLevel difficulty, Date date, String description,
             String distance, String heightLevel, String minHeight, String tools, String meetingPlace, Time time,
             Integer maxPeople) {
         this.id = id;
@@ -81,11 +86,11 @@ public class Event {
         this.maxPeople = maxPeople;
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -191,5 +196,13 @@ public class Event {
 
     public void setChildren(Reservation reservation) {
         this.reservations.add(reservation);
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+    public Profile getProfile() {
+        return profile;
     }
 }

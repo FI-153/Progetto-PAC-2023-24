@@ -35,12 +35,12 @@ public interface EventsManagementIF {
 	 * @param idEvent id dell'evento richiesto
 	 * @return evento richiesto
 	 */
-	public Event getEvent(long idEvent);
+	public Event getEvent(Integer idEvent);
 
 	/**
 	 *
 	 * Funzione che elimina l'evento richiesto
 	 * @param idEvent id dell'evento da eliminare
 	 */
-   public void deleteEvent(Long idEvent);
+   public void deleteEvent(Integer idEvent);
 }

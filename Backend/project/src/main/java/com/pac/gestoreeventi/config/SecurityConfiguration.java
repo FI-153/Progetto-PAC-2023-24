@@ -1,8 +1,10 @@
 package com.pac.gestoreeventi.config;
 
+import com.pac.gestoreeventi.profileManagement.ProfileRole;
 import com.pac.gestoreeventi.profileManagement.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.SecurityBuilder;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,8 +28,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      @Override
      protected void configure(HttpSecurity http) throws Exception {
          http.authorizeRequests()
-                 .anyRequest().authenticated().and().csrf().disable().sessionManagement()
-                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().httpBasic();
+                  .antMatchers(HttpMethod.GET, "/login").hasAnyRole()
+                  .antMatchers(HttpMethod.GET, "/profiles").hasAnyRole()
+                  .antMatchers(HttpMethod.POST, "/profiles").hasAnyRole()
+                  .antMatchers(HttpMethod.DELETE, "/profiles").hasAnyRole()
+         		  .antMatchers(HttpMethod.PUT, "/profiles").hasAnyRole()
+                   .and().csrf().disable().sessionManagement()
+                   .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().httpBasic();
      }
 
      @Bean
