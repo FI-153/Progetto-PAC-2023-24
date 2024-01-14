@@ -31,6 +31,15 @@ public class ReservationService implements ReservationManagementIF{
     @Override
     public void createReservation(ReservationDTO reservationDTO) {
             Reservation reservation = modelMapper.map(reservationDTO,Reservation.class);
+            
+            if(eventService.getEvent(reservationDTO.getIdEvent()) == null) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Event not found");
+            }
+
+            if(profileService.getProfile(reservationDTO.getIdProfile()) == null) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Profile not found");
+            }
+            
             reservation.setConfirmation(false);
             reservation.setEvent(eventService.getEvent(reservationDTO.getIdEvent()));
             reservation.setProfile(profileService.getProfile(reservationDTO.getIdProfile()));
