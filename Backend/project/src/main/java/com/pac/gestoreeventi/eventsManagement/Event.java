@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pac.gestoreeventi.profileManagement.Profile;
 import com.pac.gestoreeventi.reservationManagement.Reservation;
 import org.hibernate.annotations.CreationTimestamp;
@@ -60,9 +61,11 @@ public class Event {
     
     @ManyToOne
     @JoinColumn(name = "idProfile")
+    @JsonIgnore
     private Profile profile;
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Reservation> reservations = new ArrayList<>();
 
     public Event() {
