@@ -56,7 +56,7 @@ public class Event {
     private Integer maxPeople;
 
     @Column
-    private Time time;
+    private String time;
     
     @ManyToOne
     @JoinColumn(name = "idProfile")
@@ -69,7 +69,7 @@ public class Event {
     }
 
     public Event(Integer id, String name, String place, EventLevel difficulty, Date date, String description,
-            String distance, String heightLevel, String minHeight, String tools, String meetingPlace, Time time,
+            String distance, String heightLevel, String minHeight, String tools, String meetingPlace, String time,
             Integer maxPeople) {
         this.id = id;
         this.name = name;
@@ -174,11 +174,11 @@ public class Event {
         this.meetingPlace = meetingPlace;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

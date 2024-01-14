@@ -35,7 +35,7 @@ public class EventDTO {
 
     private Integer maxPeople;
 
-    private Time time;
+    private String time;
 
     public EventDTO(){
 
@@ -145,11 +145,11 @@ public class EventDTO {
         this.meetingPlace = meetingPlace;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
