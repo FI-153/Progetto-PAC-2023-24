@@ -44,7 +44,6 @@ public class ProfileController {
 	}
 
 	@DeleteMapping(path = "/profiles/{idProfile}")
-	@ResponseStatus(HttpStatus.ACCEPTED)
 	public void deleteProfile(@PathVariable Integer idProfile) {
 		profileService.deleteProfile(idProfile);
 	}
