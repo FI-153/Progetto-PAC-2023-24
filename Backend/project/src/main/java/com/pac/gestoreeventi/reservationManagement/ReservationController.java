@@ -32,7 +32,7 @@ public class ReservationController {
     }
 
     @DeleteMapping(path = "/profile/{idReservation}")
-    public String deleteEvent(@PathVariable("idReservation") Integer idReservation){
+    public String deleteReservation(@PathVariable("idReservation") Integer idReservation){
         reservationService.deleteReservation(idReservation);
         return "Prenotazione eliminata";
     }
