@@ -1,0 +1,28 @@
+algoritmo selezionaIscritti(Lista listaIscritti) 
+    S <- {}
+    limiteMax = Event.maxPeople
+    
+    if (listaIscritti.dim <= limiteMax) then S <- all(listaIscritti)
+    else 
+        livello = Event.level
+        int i = 0  //posti occupati
+        int j = 0  //distanza dal livello evento
+        
+        while((i != limiteMax) and (listaIscritti != {})) do
+            utenteConfermato = seleziona(listaIscritti, livello, j)
+            
+	    if(utenteConfermato != null) {
+            	listaIscritti <- listaIscritti / {utenteConfermato}
+            	S <- S U {utenteConfermato}
+            	i + 1
+	    }
+
+            if(not listaIscritti.contains(anotherUser con userLevel = livello +- j)) then j+1
+        
+    return S
+
+//prima vengono considerati gli utenti con lo stesso livello dell'evento
+//poi quelli ai livelli +-1, +-2 fino a esaurimento posti
+
+funzione seleziona(listaIscritti, livello, distanza)
+    return (User con userLevel = livello + distanza) or (User con userLevel - distanza)
