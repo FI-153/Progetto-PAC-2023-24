@@ -1,9 +1,10 @@
 version: "3.0"
+name: "mountain-app"
 services:
 
   managers:
     image: freddy153/ventura-boulevard:latest-development
-    container_name: ventura-boulevard
+    container_name: managers
     restart: unless-stopped
     ports:
       - 8080:8080
@@ -12,7 +13,7 @@ services:
 
   gateway:
     image: freddy153/radio-nowhere:latest-development
-    container_name: radio-nowhere
+    container_name: gateway
     restart: unless-stopped
     ports:
       - "8085:8085"
@@ -25,12 +26,26 @@ services:
 
   watchtower:
     image: containrrr/watchtower
+    container_name: watchtower
     # restart: unless-stopped
     depends_on:
       - managers
       - gateway
     networks:
       - shared-net
+
+  frontend:
+    image: freddy153/zombie-zoo:latest-development
+    container_name: frontend
+    restart: unless-stopped
+    depends_on:
+      - gateway
+    networks:
+      - shared-net
+    ports:
+      - "9000:9000"
+    expose:
+      - "9000"
 
 networks:
   shared-net:

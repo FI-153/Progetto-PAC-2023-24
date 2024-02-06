@@ -1,4 +1,23 @@
-# Progetto di PAC aa.2023-24: Mountain App 🏔️
+<div align="center">
+  <img src='./assetReadme/icon.png' width=350>
+  <br></br>
+  <h1> Progetto di PAC aa.2023-24: Mountain App </h1>
+
+  <h3>Managers</h3>
+
+  [![Deployment - Costruisci e Pubblica l'immagine dei managers](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Managers_Dep.yml/badge.svg?branch=production)](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Managers_Dep.yml)
+  [![Development - Costruisci e Pubblica l'immagine dei managers](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Managers_Dev.yml/badge.svg?branch=main)](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Managers_Dev.yml)
+
+  <h3>Gateway</h3>
+
+  [![Deployment - Costruisci e Pubblica l'immagine del gateway](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Gateway_Dep.yml/badge.svg?branch=production)](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Gateway_Dep.yml)
+  [![Development - Costruisci e Pubblica l'immagine del gateway](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Gateway_Dev.yml/badge.svg)](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Gateway_Dev.yml)
+
+  <h3>Frontend</h3>
+
+  [![Deployment - Costruisci e Pubblica l'immagine del frontend](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Frontend_Dep.yml/badge.svg?branch=production)](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Frontend_Dep.yml)
+  [![Development - Costruisci e Pubblica l'immagine del frontend](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Frontend_Dev.yml/badge.svg?branch=main)](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Frontend_Dev.yml)
+</div>
 
 ## Membri del team
 
@@ -10,19 +29,7 @@
 | Sabrin Maatoug | 1065576 | s.maatoug@studenti.unibg.it
 
 ## Quickstart
-Eseguire in locale il backedn con il seguente comando, attraverso curl e docker-compose.
+Potete eseguire il progetto con il seguente comando, attraverso curl e docker-compose.
 ```
-curl -o docker-compose.yml https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/production/docker-compose.yml && docker compose -p mountain-app up
+curl -O https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/production/docker-compose.yml && docker compose up
 ```
-## Continuous Integration
-### Status Ambiente di Sviluppo
- [![Development - Costruisci e Pubblica l'immagine del backend](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Server_Dev.yml/badge.svg?branch=main)](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Server_Dev.yml)
-
-> [!IMPORTANT]
-> L'immagine dell'ambiente di sviluppo viene ricreata ad ogni `push` del branch `main`
-
-### Status Ambiente di Produzione
-[![Production - Costruisci e Pubblica l'immagine del backend](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Server_Prod.yml/badge.svg)](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Server_Prod.yml)
-
-> [!IMPORTANT]
-> L'immagine dell'ambiente di produzione viene ricreata ad ogni `push` del branch `production` e viene poi pubblicata sulla macchina virtuale attiva su [Digital Ocean](https://www.digitalocean.com)

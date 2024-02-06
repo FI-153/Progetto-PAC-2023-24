@@ -1,0 +1,53 @@
+name: Development - Costruisci e Pubblica l'immagine del gateway
+run-name: "Dev - Gateway"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - Backend/Iterazione3/gateway/**
+
+jobs:
+  #Set up how to build the images (sources and permissions)
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - dockerfile: ./Backend/Iterazione3/project/Dockerfile
+            image: freddy153/radio-nowhere
+
+    permissions:
+      contents: read
+      packages: write
+
+    #Steps to perform to build and push
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Log in to the Docker Hub
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          username: ${{ secrets.USERNAME_DOCKERHUB }}
+          password: ${{ secrets.PASSWORD_DOCKERHUB }}
+
+      - name: Extract metadata (tags, labels) from Docker images
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ matrix.image }}
+          tags:
+            latest-development
+   
+      - name: Build and Push Docker images
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          context: .
+          file: ${{ matrix.dockerfile }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
