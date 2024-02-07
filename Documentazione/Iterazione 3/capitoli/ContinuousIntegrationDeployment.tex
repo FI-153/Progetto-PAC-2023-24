@@ -1,4 +1,5 @@
 \section{Continuous Integration e Continuous Deployment (CI/CD)}
+\label{sect:CICD_it3}
 Attraverso le GitHub Actions abbiamo implementato un meccanismo di Continuous Integration e Deployment che ci permette di lavorare sul nostro codice sorgente e non dover provvedere manualmente alla compilazione e pubblicazione dell'immagine Docker con la quale abbiamo pubblicato il nostro backend. La parte di CI avviene direttamente su GitHub, appunto grazie alle Actions, mentre la parte di CD avviene sulla macchina virtuale di Digital Ocean che abbiamo usato per pubblicare l'architettura.
 \subsection{Continuous Integration (CI)}
 \begin{figure}[h!]
@@ -24,6 +25,7 @@ Infine la nostra repository è organizzata attorno a 2 branch principali (oltre 
 Ad ogni push alla branch main o production viene rigenerata e ri-pubblicata su Docker Hub, rispettivamente, l'immagine taggata come ``latest-development'' e \\ ``latest-production''.
 Per pubblicare l'immagine compilata sul relativo registry di Docker Hub è necessario accedere con le credenziali del proprietario. Per permette di usarle senza che vengano mai divulgate al pubblico, GitHub mette a disposizione ``Secrets'', che possiamo vedere come un dizionario dove ogni coppia chiave-valore rappresenta una costante che può essere richiamata all'interno delle Actions attraverso la sua chiave. Una volta creata una entry non è più possibile, neppure per l'autore, vederne il contenuto, ma unicamente modificarla o eliminarla.
 \subsection{Continuous Deployment (CD)}
+\label{sect:CD_it3}
 \begin{figure}[h!]
   \centering
   \includegraphics[width=1\textwidth]{Iterazione 3/images/CD.png}

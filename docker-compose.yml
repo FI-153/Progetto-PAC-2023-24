@@ -1,9 +1,9 @@
 version: "3.0"
+name: "mountain-app"
 services:
-
   managers:
     image: freddy153/ventura-boulevard:latest-development
-    container_name: ventura-boulevard
+    container_name: managers
     restart: unless-stopped
     ports:
       - 8080:8080
@@ -12,7 +12,7 @@ services:
 
   gateway:
     image: freddy153/radio-nowhere:latest-development
-    container_name: radio-nowhere
+    container_name: gateway
     restart: unless-stopped
     ports:
       - "8085:8085"
@@ -23,18 +23,35 @@ services:
     expose:
       - "8085"
 
-  watchtower:
-    image: containrrr/watchtower
-    # restart: unless-stopped
+  frontend:
+    image: freddy153/zombie-zoo:latest-development
+    container_name: frontend
+    restart: unless-stopped
     depends_on:
-      - managers
       - gateway
     networks:
       - shared-net
+    ports:
+      - "9000:9000"
+    expose:
+      - "9000"
+
+  watchtower-autoupdate:
+    image: containrrr/watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 86400 --cleanup --remove-volumes --include-restarting --log-format Pretty
+
+  watchtower-manualupdate:
+    image: containrrr/watchtower
+    container_name: manual-update
+    depends_on:
+      watchtower-autoupdate:
+        condition: service_completed_successfully
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --run-once --cleanup --remove-volumes --include-restarting --log-level info --log-format Pretty
 
 networks:
   shared-net:
-
-
-volumes:
-  watchtower:
