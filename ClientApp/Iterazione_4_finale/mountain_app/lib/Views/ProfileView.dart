@@ -21,52 +21,54 @@ class ProfileView extends StatelessWidget {
           if (utente.id == Utente.loggedUser.id) logoutButtonSection(context)
         ],
       ),
-      body: Column(
-        children: [
-          Container(
-            height: 200,
-            child: Stack(
-              children: [
-                backgroundImageSection(),
-                profilePhotoView(),
-              ],
-            ),
-          ),
-          Container(
-            height: 150,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-              child: Column(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 200,
+              child: Stack(
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 90,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            nameSurnameSection(),
-                            experienceSection(),
-                            if (utente.isOrganizer) organizerSection(),
-                          ],
-                        ),
-                      ),
-                      customDivider(),
-                      Text(
-                        "Esperienze Passate",
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w600),
-                      ),
-                    ],
-                  ),
+                  backgroundImageSection(),
+                  profilePhotoView(),
                 ],
               ),
             ),
-          ),
-          excursionListSection(),
-        ],
+            Container(
+              height: 150,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                child: Column(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 90,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              nameSurnameSection(),
+                              experienceSection(),
+                              if (utente.isOrganizer) organizerSection(),
+                            ],
+                          ),
+                        ),
+                        customDivider(),
+                        Text(
+                          "Esperienze Passate",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w600),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            excursionListSection(),
+          ],
+        ),
       ),
     );
   }
