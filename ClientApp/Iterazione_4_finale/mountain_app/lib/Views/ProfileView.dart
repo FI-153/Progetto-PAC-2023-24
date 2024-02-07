@@ -25,34 +25,41 @@ class ProfileView extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: 200,
+              height: 160,
               child: Stack(
                 children: [
                   backgroundImageSection(),
-                  profilePhotoView(),
                 ],
               ),
             ),
             Container(
-              height: 150,
+              height: 180,
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          height: 90,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              nameSurnameSection(),
-                              experienceSection(),
-                              if (utente.isOrganizer) organizerSection(),
-                            ],
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            profilePhotoView(),
+                            SizedBox(
+                              height: 90,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  nameSurnameSection(),
+                                  experienceSection(),
+                                  if (utente.isOrganizer) organizerSection(),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                         customDivider(),
                         Text(
@@ -130,9 +137,9 @@ class ProfileView extends StatelessWidget {
 
   Widget profilePhotoView() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 64, 16, 16),
+      padding: EdgeInsets.fromLTRB(0, 0, 16, 0),
       child: CircleAvatar(
-        radius: 70,
+        radius: 60,
         foregroundImage: AssetImage('images/meProfile.png'),
       ),
     );
