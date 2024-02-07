@@ -25,6 +25,7 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
 
     @Autowired
     private ProfileRepository profileRepository;
+	
 	@Autowired
 	private EventRepository eventRepository;
 
