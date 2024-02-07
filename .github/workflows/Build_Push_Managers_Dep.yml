@@ -1,5 +1,5 @@
-name: Deployment - Costruisci e Pubblica l'immagine dei managers
-run-name: "Dep - Managers"
+#Deployment - Costruisci e Pubblica l'immagine dei managers
+name: Dep - Managers
 
 on:
   workflow_dispatch:

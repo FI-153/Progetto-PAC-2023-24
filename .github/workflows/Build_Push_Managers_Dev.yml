@@ -1,5 +1,5 @@
-name: Development - Costruisci e Pubblica l'immagine dei managers
-run-name: "Dev - Managers"
+#Development - Costruisci e Pubblica l'immagine dei managers
+name: Dev - Managers
 
 on:
   workflow_dispatch:

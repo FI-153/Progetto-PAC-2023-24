@@ -3,18 +3,10 @@
   <br></br>
   <h1> Progetto di PAC aa.2023-24: Mountain App </h1>
 
-  <h3>Managers</h3>
-
   [![Deployment - Costruisci e Pubblica l'immagine dei managers](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Managers_Dep.yml/badge.svg?branch=production)](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Managers_Dep.yml)
   [![Development - Costruisci e Pubblica l'immagine dei managers](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Managers_Dev.yml/badge.svg?branch=main)](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Managers_Dev.yml)
-
-  <h3>Gateway</h3>
-
   [![Deployment - Costruisci e Pubblica l'immagine del gateway](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Gateway_Dep.yml/badge.svg?branch=production)](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Gateway_Dep.yml)
   [![Development - Costruisci e Pubblica l'immagine del gateway](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Gateway_Dev.yml/badge.svg)](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Gateway_Dev.yml)
-
-  <h3>Frontend</h3>
-
   [![Deployment - Costruisci e Pubblica l'immagine del frontend](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Frontend_Dep.yml/badge.svg?branch=production)](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Frontend_Dep.yml)
   [![Development - Costruisci e Pubblica l'immagine del frontend](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Frontend_Dev.yml/badge.svg?branch=main)](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Frontend_Dev.yml)
 </div>

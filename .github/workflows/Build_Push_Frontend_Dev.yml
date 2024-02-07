@@ -1,5 +1,5 @@
-name: Development - Costruisci e Pubblica l'immagine del frontend
-run-name: "Dev - Frontend"
+#Development - Costruisci e Pubblica l'immagine del frontend
+name: Dev - Frontend
 
 on:
   workflow_dispatch:
