@@ -28,7 +28,7 @@ class _LoadingTileViewState extends State<LoadingTileView> {
                   Stack(
                     children: [
                       Lottie.network(
-                        'https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/main/ClientApp/Iterazione_4_finale/mountain_app/assets/error.json',
+                        'https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/main/ClientApp/Iterazione_4_finale/mountain_app/assets/tileLoading.json',
                         height: 200,
                       ),
                       Lottie.asset(

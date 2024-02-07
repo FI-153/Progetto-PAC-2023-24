@@ -93,9 +93,7 @@ class ProfileView extends StatelessWidget {
 
   Widget excursionListSection() {
     return utente.iscrizioniPassate.isEmpty
-        ? SizedBox(
-            height: 500,
-            child: Center(child: Text("Non ci sono esperienze passate.")))
+        ? Center(child: Text("Non ci sono esperienze passate."))
         : Container(
             height: 900,
             child: ListView.builder(
