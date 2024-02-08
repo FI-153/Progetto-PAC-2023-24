@@ -20,7 +20,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-import com.pac.gestoreeventi.ServiceTest;
 import com.pac.gestoreeventi.config.SecurityConfiguration;
 import com.pac.gestoreeventi.eventsManagement.Event;
 import com.pac.gestoreeventi.eventsManagement.EventLevel;
