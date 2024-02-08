@@ -78,7 +78,7 @@ public class EventService implements EventsManagementIF{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Request received. No event to delete found");
         }
 
-         eventRepository.delete(event.get());
+        eventRepository.delete(event.get());
     }
 
     @Override

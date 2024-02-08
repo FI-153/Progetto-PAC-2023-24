@@ -15,7 +15,7 @@ import java.util.Date;
 public class Reservation {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @ManyToOne
@@ -39,11 +39,28 @@ public class Reservation {
     public Reservation() {
 
     }
+    
     public Reservation(Integer id,Date datetime,Boolean confirmation) {
             this.id = id;
             this.datetime =  datetime;
             this.confirmation =  confirmation;
     }
+
+    public Reservation(Integer id, Profile profile, Event event, Date datetime,Boolean confirmation) {
+        this.id = id;
+        this.profile = profile;
+        this.event = event;
+        this.datetime =  datetime;
+        this.confirmation =  confirmation;
+    }
+    
+    public Reservation(Profile profile, Event event, Date datetime,Boolean confirmation) {
+        this.profile = profile;
+        this.event = event;
+        this.datetime =  datetime;
+        this.confirmation =  confirmation;
+    }
+
     public void setDatetime(Date datetime) {
         this.datetime = datetime;
     }

@@ -1,0 +1,25 @@
+\section{Guida per l'installazione}
+Il progetto che consegniamo può essere esegiuto sia in locale che in remoto. L'istanza remota verrà disattivata una volta terminata la correzzione e presentazione del progetto mentre l'esecuzione locale resterà disponibile indefinitamente.
+\subsection{Esecuzione locale}
+Per eseguire il progetto sulla propria macchina si dovrà procedere in 6 passaggi:
+\begin{enumerate}
+  \item Verificare di aver installato Docker, per esempio verificando che il comando `docker --version' non restituisca errori;
+  \item Lanciare Docker tramite comando oppure tramite Docker Desktop;
+  \item Scaricare il file docker-compose.yml alla root della repository, posizionarsi nella stessa cartella dove è stato scaricato e assicurarsi che sia l'unico file chiamato `docker-compose.yml';
+  \item Eseguire il file con il comando `docker compose up' da una finestra del terminale aperta nella cartella dove è stato scaricato il file;
+  \item Attendere l'installazione di tutti i servizi (potrebbe richiedere un pò di tempo dipendentemente dalla velocità della propria rete internet);
+  \item È ora possibile utilizzare il servizio:
+  \begin{itemize}
+    \item Collegarsi ad \href{http://localhost:8080}{http://localhost:8080} se si vuole interagire direttamente con i manager (per esempio per debugging);
+    \item Collegarsi ad \href{http://localhost:8085}{http://localhost:8085} se si vuole interagire direttamente con il gateway (per esempio per debugging);
+    \item Collegarsi ad \href{http://localhost:9000}{http://localhost:9000} se si vuole interagire con il frontend della app mobile. Essendo l'app pensata per essere eseguita unicamente su dispositivi mobili consigliamo di \textbf{restringere in larghezza la pagina del browser} in modo da simulare le dimensioni di uno smartphone.
+  \end{itemize}
+\end{enumerate}
+Alla sezione \href{https://github.com/FI-153/Progetto-PAC-2023-24/blob/main/README.md#quickstart}{QuickStart} del readme.md della repository è possibile trovare un comando che velocizza l'esecuzione in locale dell'architettura scaricando il docker-compose.yml attraverso curl ed esegendolo subito dopo.
+\subsection{Esecuzione remota}
+Per facilitare la correzzione del progetto abbiamo pensato di pubblicare su di una macchina virtuale (messa a dispozione da \href{https://www.digitalocean.com}{Digital Ocean} con un credito di \verb|200$| dedicato agli studenti) il nostro progetto in modo che ci si possa collegare facilmente senza il bisogno di installare Docker o scaricare nulla. Per accedere all'istanza remota è possibile collegarsi a:
+\begin{itemize}
+  \item \href{http://165.227.152.216:8080}{http://165.227.152.216:8080} se si vuole interagire direttamente con i manager (per esempio per debugging);
+  \item \href{http://165.227.152.216:8085}{http://165.227.152.216:8085} se si vuole interagire direttamente con il gateway (per esempio per debugging);
+  \item \href{http://165.227.152.216:9000}{http://165.227.152.216:9000} se si vuole interagire con il frontend della app mobile. Essendo l'app pensata per essere eseguita unicamente su dispositivi mobili consigliamo di \textbf{restringere in larghezza la pagina del browser} in modo da simulare le dimensioni di uno smartphone.
+\end{itemize}

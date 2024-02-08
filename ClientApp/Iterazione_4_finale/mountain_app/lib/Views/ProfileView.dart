@@ -21,52 +21,61 @@ class ProfileView extends StatelessWidget {
           if (utente.id == Utente.loggedUser.id) logoutButtonSection(context)
         ],
       ),
-      body: Column(
-        children: [
-          Container(
-            height: 200,
-            child: Stack(
-              children: [
-                backgroundImageSection(),
-                profilePhotoView(),
-              ],
-            ),
-          ),
-          Container(
-            height: 150,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-              child: Column(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 160,
+              child: Stack(
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 90,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            nameSurnameSection(),
-                            experienceSection(),
-                            if (utente.isOrganizer) organizerSection(),
-                          ],
-                        ),
-                      ),
-                      customDivider(),
-                      Text(
-                        "Esperienze Passate",
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w600),
-                      ),
-                    ],
-                  ),
+                  backgroundImageSection(),
                 ],
               ),
             ),
-          ),
-          excursionListSection(),
-        ],
+            Container(
+              height: 180,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            profilePhotoView(),
+                            SizedBox(
+                              height: 90,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  nameSurnameSection(),
+                                  experienceSection(),
+                                  if (utente.isOrganizer) organizerSection(),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        customDivider(),
+                        Text(
+                          "Esperienze Passate",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w600),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            excursionListSection(),
+          ],
+        ),
       ),
     );
   }
@@ -93,9 +102,7 @@ class ProfileView extends StatelessWidget {
 
   Widget excursionListSection() {
     return utente.iscrizioniPassate.isEmpty
-        ? SizedBox(
-            height: 500,
-            child: Center(child: Text("Non ci sono esperienze passate.")))
+        ? Center(child: Text("Non ci sono esperienze passate."))
         : Container(
             height: 900,
             child: ListView.builder(
@@ -130,9 +137,9 @@ class ProfileView extends StatelessWidget {
 
   Widget profilePhotoView() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 64, 16, 16),
+      padding: EdgeInsets.fromLTRB(0, 0, 16, 0),
       child: CircleAvatar(
-        radius: 70,
+        radius: 60,
         foregroundImage: AssetImage('images/meProfile.png'),
       ),
     );
