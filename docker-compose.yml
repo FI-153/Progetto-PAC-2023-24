@@ -2,7 +2,7 @@ version: "3.0"
 name: "mountain-app"
 services:
   managers:
-    image: freddy153/ventura-boulevard:latest-development
+    image: freddy153/ventura-boulevard:latest-deployment
     container_name: managers
     restart: unless-stopped
     ports:
@@ -13,7 +13,7 @@ services:
       - shared-net
 
   gateway:
-    image: freddy153/radio-nowhere:latest-development
+    image: freddy153/radio-nowhere:latest-deployment
     container_name: gateway
     restart: unless-stopped
     ports:
@@ -26,7 +26,7 @@ services:
       - "8085"
 
   frontend:
-    image: freddy153/zombie-zoo:latest-development
+    image: freddy153/zombie-zoo:latest-deployment
     container_name: frontend
     restart: unless-stopped
     depends_on:
@@ -40,7 +40,7 @@ services:
 
   db:
     image: postgres
-    container_name: postgres_container
+    container_name: postgres
     restart: always
     environment:
       POSTGRES_USER: root
@@ -48,10 +48,14 @@ services:
       POSTGRES_DB: test_db
     ports:
       - "5432:5432"
-  
+    expose:
+      - "5432"
+    networks:
+      - shared-net
+
   pgadmin:
     image: dpage/pgadmin4
-    container_name: pgadmin4_container
+    container_name: pgadmin
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
@@ -60,7 +64,6 @@ services:
       - db
     ports:
       - "5050:80"
-
 
   watchtower-autoupdate:
     image: containrrr/watchtower
