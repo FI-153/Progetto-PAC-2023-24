@@ -14,5 +14,5 @@ fi
 cd /app/build/web/
 
 # Start the web server on the specified port
-echo "Starting the server on port $PORT..."
+echo "🎉🎉 Success! Your frontend is available on port $PORT"
 python3 -m http.server $PORT
