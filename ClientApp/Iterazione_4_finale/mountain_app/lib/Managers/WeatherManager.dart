@@ -6,16 +6,19 @@ import 'package:mountain_app/Utilities/Constants.dart';
 
 class WeatherManager {
   static WeatherManager _instance = WeatherManager._internal();
+  late String _baseIpGateway;
 
   factory WeatherManager() {
     return _instance;
   }
 
-  WeatherManager._internal() {}
+  WeatherManager._internal() {
+    _baseIpGateway = getAddress();
+  }
 
   Future<WeatherConditions> fetchWeather(String date, String location) async {
     final response = await http
-        .get(Uri.parse('$baseIpGateway/events/weather/$date/$location'));
+        .get(Uri.parse('$_baseIpGateway/events/weather/$date/$location'));
 
     switch (response.statusCode) {
       case 200:
