@@ -4,6 +4,8 @@ import com.pac.gestoreeventi.profileManagement.Profile;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 public interface EventsManagementIF {
     /**
 	* Funzione che restituisce tutti gli eventi.

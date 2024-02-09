@@ -70,6 +70,24 @@ public class Event {
     public Event() {
     }
 
+    public Event(Integer id, String name, String place, EventLevel difficulty, Date date, String description,
+            String distance, String heightLevel, String minHeight, String tools, String meetingPlace, String time,
+            Integer maxPeople) {
+        this.id = id;
+        this.name = name;
+        this.place = place;
+        this.difficulty = difficulty;
+        this.date = date;
+        this.description = description;
+        this.distance = distance;
+        this.heightLevel = heightLevel;
+        this.minHeight = minHeight;
+        this.tools = tools;
+        this.meetingPlace = meetingPlace;
+        this.time = time;
+        this.maxPeople = maxPeople;
+    }
+
     public Event(String name, String place, EventLevel difficulty, Date date, String description,
             String distance, String heightLevel, String minHeight, String tools, String meetingPlace, String time,
             Integer maxPeople) {

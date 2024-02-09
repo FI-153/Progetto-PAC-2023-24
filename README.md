@@ -21,7 +21,21 @@
 | Sabrin Maatoug | 1065576 | s.maatoug@studenti.unibg.it
 
 ## Quickstart
-Potete eseguire il progetto con il seguente comando, attraverso curl e docker-compose.
+Potete eseguire il progetto con il seguente comando, attraverso curl e docker-compose. Il file "docker-compose.yml" verrà scaricato in locale e poi eseguito
 ```
-curl -O https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/production/docker-compose.yml && docker compose up
+curl -O https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/production/docker-compose.yml && docker compose up -d
+```
+<br>
+
+> [!IMPORTANT]
+> È necessario che il deamon di Docker sia attivo.
+
+> [!CAUTION]
+> Questa operazione sovrascriverà ogni file chiamato "docker-compose.yml" nella cartella in cui viene eseguito.
+
+<br>
+
+Per lanciare un aggiornamento di tutte le immagini che compongono l'architettura usate
+```
+docker start manual-update
 ```

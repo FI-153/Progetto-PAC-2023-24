@@ -20,8 +20,10 @@ public class EventService implements EventsManagementIF{
 
     @Autowired
 	private EventRepository eventRepository;
+    
     @Autowired
     private ReservationRepository  reservationRepository;
+
     @Autowired
     private ProfileService profileService;
 
