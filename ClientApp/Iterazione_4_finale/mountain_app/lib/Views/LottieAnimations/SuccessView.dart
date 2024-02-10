@@ -20,21 +20,11 @@ class SuccessView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Stack(
-                children: [
-                  Lottie.asset(
-                    "checkmark.json",
-                    repeat: false,
-                    width: 200,
-                    height: 200,
-                  ),
-                  Lottie.network(
-                    'https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/main/ClientApp/Iterazione_4_finale/mountain_app/assets/checkmark.json',
-                    repeat: false,
-                    width: 200,
-                    height: 200,
-                  ),
-                ],
+              Lottie.asset(
+                "/assets/checkmark.json",
+                repeat: false,
+                width: 200,
+                height: 200,
               ),
               Container(
                 height: 120,

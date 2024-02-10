@@ -9,18 +9,21 @@ import 'package:http/http.dart' as http;
 class EventsManger {
   //Istanza statica privata della classe
   static final EventsManger _instance = EventsManger._internal();
+  late String _baseIpGateway;
+  String _basicAuth =
+      'Basic ${base64Encode(utf8.encode('${Utente.loggedUser.mail}:${Utente.loggedUser.password}'))}';
 
   factory EventsManger() {
     return _instance;
   }
 
-  EventsManger._internal() {}
-  String _basicAuth =
-      'Basic ${base64Encode(utf8.encode('${Utente.loggedUser.mail}:${Utente.loggedUser.password}'))}';
+  EventsManger._internal() {
+    _baseIpGateway = getAddress();
+  }
 
   Future<List<Escursione>> fetchEvents() async {
     try {
-      final response = await http.get(Uri.parse('${baseIpGateway}/events/'),
+      final response = await http.get(Uri.parse('${_baseIpGateway}/events/'),
           headers: {HttpHeaders.authorizationHeader: _basicAuth});
 
       List<dynamic> decoded = json.decode(response.body);
@@ -38,7 +41,7 @@ class EventsManger {
   void selectPartecipants(int idEvent) async {
     try {
       final _ = await http.get(
-          Uri.parse('${baseIpGateway}/events/${idEvent}/close'),
+          Uri.parse('${_baseIpGateway}/events/${idEvent}/close'),
           headers: {HttpHeaders.authorizationHeader: _basicAuth});
     } catch (e) {
       print(e);
@@ -49,7 +52,7 @@ class EventsManger {
     try {
       final response = await http.get(
           Uri.parse(
-              '${baseIpGateway}/profiles/${Utente.loggedUser.id}/reservations'),
+              '${_baseIpGateway}/profiles/${Utente.loggedUser.id}/reservations'),
           headers: {HttpHeaders.authorizationHeader: _basicAuth});
 
       List<dynamic> decoded = json.decode(response.body);
@@ -65,7 +68,7 @@ class EventsManger {
   }
 
   Future<Escursione> fetchEvent(int id) async {
-    final response = await http.get(Uri.parse('$baseIpGateway/events/$id'),
+    final response = await http.get(Uri.parse('$_baseIpGateway/events/$id'),
         headers: {HttpHeaders.authorizationHeader: _basicAuth});
 
     if (response.statusCode == 200) {
@@ -85,7 +88,7 @@ class EventsManger {
     });
 
     final response = await http.post(
-      Uri.parse('$baseIpGateway/events/reservation'),
+      Uri.parse('$_baseIpGateway/events/reservation'),
       headers: {
         "Content-Type": "application/json",
         HttpHeaders.authorizationHeader: _basicAuth,
@@ -103,7 +106,7 @@ class EventsManger {
     var body = json.encode(escursione.toJson(50));
 
     final response = await http.post(
-      Uri.parse('$baseIpGateway/events/new'),
+      Uri.parse('$_baseIpGateway/events/new'),
       headers: {
         "Content-Type": "application/json",
         HttpHeaders.authorizationHeader: _basicAuth,
@@ -128,7 +131,7 @@ class EventsManger {
 
   Future<bool> deleteEvent(int idEvent) async {
     final response = await http.delete(
-        Uri.parse('$baseIpGateway/events/$idEvent'),
+        Uri.parse('$_baseIpGateway/events/$idEvent'),
         headers: {HttpHeaders.authorizationHeader: _basicAuth});
 
     if (response.statusCode == 200) {

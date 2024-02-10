@@ -47,137 +47,140 @@ class _RegistrationViewState extends State<RegistrationView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(),
         body: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Center(
-            child: SizedBox(
-                height: 850,
-                width: 350,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    titleSection(),
-                    Form(
-                        key: _formKey,
-                        child: Container(
-                          height: 660,
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                customTextFieldSection(
-                                  Icons.person,
-                                  "Nome",
-                                  "Inserisci il tuo nome...",
-                                  _nameFieldController,
-                                  true,
-                                  false,
-                                  TextInputType.name,
-                                  false,
-                                ),
-                                customTextFieldSection(
-                                  Icons.person,
-                                  "Cognome",
-                                  "Inserisci il tuo cognome...",
-                                  _surnnameFieldController,
-                                  true,
-                                  false,
-                                  TextInputType.name,
-                                  false,
-                                ),
-                                customTextFieldSection(
-                                  Icons.mail,
-                                  "Indirizzo Email",
-                                  "Inserisci la tua mail...",
-                                  _emailFieldcontroller,
-                                  true,
-                                  false,
-                                  TextInputType.name,
-                                  false,
-                                ),
-                                customTextFieldSection(
-                                  Icons.phone,
-                                  "Numero di telefono",
-                                  "Inserisci il tuo numero di telefono...",
-                                  _phoneFieldcontroller,
-                                  true,
-                                  false,
-                                  TextInputType.name,
-                                  false,
-                                ),
-                                customTextFieldSection(
-                                  Icons.numbers,
-                                  "Codice Organizzatore",
-                                  "Se possiedi un codice inseriscilo...",
-                                  _codeFieldcontroller,
-                                  false,
-                                  false,
-                                  TextInputType.name,
-                                  true,
-                                ),
-                                customTextFieldSection(
-                                  Icons.password,
-                                  "Password",
-                                  "Inserisci la tua password...",
-                                  _passwordFieldcontroller,
-                                  true,
-                                  true,
-                                  TextInputType.name,
-                                  false,
-                                ),
-                              ]),
-                        )),
-                    Center(
-                        child: Column(children: [
-                      Container(
-                        height: 100,
-                        width: 200,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            MainButton(
-                              text: "Registrati",
-                              width: 200,
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  Utente utente = Utente(
-                                      -1,
-                                      "",
-                                      _nameFieldController.text,
-                                      _surnnameFieldController.text,
-                                      _emailFieldcontroller.text,
-                                      _passwordFieldcontroller.text,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+                child: SizedBox(
+                    height: 850,
+                    width: 350,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        titleSection(),
+                        Form(
+                            key: _formKey,
+                            child: Container(
+                              height: 660,
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    customTextFieldSection(
+                                      Icons.person,
+                                      "Nome",
+                                      "Inserisci il tuo nome...",
+                                      _nameFieldController,
                                       true,
-                                      _codeFieldcontroller.text.isEmpty
-                                          ? false
-                                          : true,
-                                      [],
-                                      [],
-                                      0,
-                                      Uri(path: ''));
-
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          RegistrationLoadingView(
-                                              utente: utente),
+                                      false,
+                                      TextInputType.name,
+                                      false,
                                     ),
-                                  );
-                                }
-                              },
+                                    customTextFieldSection(
+                                      Icons.person,
+                                      "Cognome",
+                                      "Inserisci il tuo cognome...",
+                                      _surnnameFieldController,
+                                      true,
+                                      false,
+                                      TextInputType.name,
+                                      false,
+                                    ),
+                                    customTextFieldSection(
+                                      Icons.mail,
+                                      "Indirizzo Email",
+                                      "Inserisci la tua mail...",
+                                      _emailFieldcontroller,
+                                      true,
+                                      false,
+                                      TextInputType.name,
+                                      false,
+                                    ),
+                                    customTextFieldSection(
+                                      Icons.phone,
+                                      "Numero di telefono",
+                                      "Inserisci il tuo numero di telefono...",
+                                      _phoneFieldcontroller,
+                                      true,
+                                      false,
+                                      TextInputType.name,
+                                      false,
+                                    ),
+                                    customTextFieldSection(
+                                      Icons.numbers,
+                                      "Codice Organizzatore",
+                                      "Se possiedi un codice inseriscilo...",
+                                      _codeFieldcontroller,
+                                      false,
+                                      false,
+                                      TextInputType.name,
+                                      true,
+                                    ),
+                                    customTextFieldSection(
+                                      Icons.password,
+                                      "Password",
+                                      "Inserisci la tua password...",
+                                      _passwordFieldcontroller,
+                                      true,
+                                      true,
+                                      TextInputType.name,
+                                      false,
+                                    ),
+                                  ]),
+                            )),
+                        Center(
+                            child: Column(children: [
+                          Container(
+                            height: 100,
+                            width: 200,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                MainButton(
+                                  text: "Registrati",
+                                  width: 200,
+                                  onPressed: () {
+                                    if (_formKey.currentState!.validate()) {
+                                      Utente utente = Utente(
+                                          -1,
+                                          "",
+                                          _nameFieldController.text,
+                                          _surnnameFieldController.text,
+                                          _emailFieldcontroller.text,
+                                          _passwordFieldcontroller.text,
+                                          true,
+                                          _codeFieldcontroller.text.isEmpty
+                                              ? false
+                                              : true,
+                                          [],
+                                          [],
+                                          0,
+                                          Uri(path: ''));
+
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              RegistrationLoadingView(
+                                                  utente: utente),
+                                        ),
+                                      );
+                                    }
+                                  },
+                                ),
+                                Text("Campi obbligatori*",
+                                    style: sottotitoloOpaco)
+                              ],
                             ),
-                            Text("Campi obbligatori*", style: sottotitoloOpaco)
-                          ],
-                        ),
-                      ),
-                    ])),
-                  ],
-                )))
-      ],
-    ));
+                          ),
+                        ])),
+                      ],
+                    )))
+          ],
+        ));
   }
 
   Widget titleSection() {
