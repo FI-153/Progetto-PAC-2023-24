@@ -3,7 +3,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:mountain_app/Models/Escursione.dart';
+import 'package:mountain_app/Utilities/Misc.dart';
 
 class TileView extends StatefulWidget {
   final Escursione escursione;
@@ -46,7 +48,7 @@ class _TileViewState extends State<TileView> {
                   ),
                   Spacer(),
                   dateTitleDifficultySection(
-                    dataEvento: widget.escursione.data,
+                    dataEvento: dateConverter(widget.escursione.data),
                     nomeEvento: widget.escursione.nome,
                     difficolta: widget.escursione.difficolta,
                   )

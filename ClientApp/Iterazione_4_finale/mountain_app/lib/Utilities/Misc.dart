@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 TextStyle tileTitle = const TextStyle(
   fontWeight: FontWeight.w500,
@@ -44,4 +45,9 @@ TextStyle sottotitoloOpaco = const TextStyle(
 
 Widget customDivider() {
   return const Divider(indent: 16, endIndent: 16);
+}
+
+String dateConverter(String date) {
+  final strToDate = DateTime.parse(date);
+  return DateFormat('dd/MM/yyyy').format(strToDate);
 }
