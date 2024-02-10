@@ -64,6 +64,12 @@ class EventsManger {
       List<Escursione> downEscursioni =
           decoded.map((escursione) => Escursione.fromJson(escursione)).toList();
 
+      downEscursioni.forEach((element) {
+        element.data = element.data
+            .split('-')
+            .reduce((value, element) => value + '/' + element);
+      });
+
       return downEscursioni;
     } catch (e) {
       print(e);
@@ -77,8 +83,14 @@ class EventsManger {
         headers: {HttpHeaders.authorizationHeader: _basicAuth});
 
     if (response.statusCode == 200) {
-      var decoded = json.decode(response.body);
-      return Escursione.fromJson(decoded);
+      final decoded = json.decode(response.body);
+      final escursione = Escursione.fromJson(decoded);
+
+      escursione.data = escursione.data
+          .split('-')
+          .reduce((value, element) => value + '/' + element);
+
+      return escursione;
     } else {
       throw Exception('Failed to load escursione');
     }
