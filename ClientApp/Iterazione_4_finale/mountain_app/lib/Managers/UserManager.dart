@@ -6,8 +6,6 @@ import 'package:mountain_app/Utilities/Constants.dart';
 
 class UserManager {
   late String _baseIpGateway;
-  String _basicAuth =
-      'Basic ${base64Encode(utf8.encode('${Utente.loggedUser.mail}:${Utente.loggedUser.password}'))}';
 
   static final UserManager _instance = UserManager._internal();
   UserManager._internal() {
@@ -45,7 +43,6 @@ class UserManager {
       Uri.parse('$_baseIpGateway/profiles'),
       headers: {
         "Content-Type": "application/json",
-        HttpHeaders.authorizationHeader: _basicAuth,
       },
       body: body,
     );
