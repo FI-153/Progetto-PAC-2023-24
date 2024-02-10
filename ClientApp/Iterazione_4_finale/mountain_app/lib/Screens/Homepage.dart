@@ -82,18 +82,20 @@ class _HomepageScreenState extends State<HomepageScreen> {
           ],
         ),
       ),
-      floatingActionButton: MainButton(
-        color: Theme.of(context).colorScheme.secondary,
-        width: 200,
-        text: "Nuova Escursione",
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const CreateEventView(),
-            ),
-          );
-        },
-      ),
+      floatingActionButton: utente.isOrganizer
+          ? MainButton(
+              color: Theme.of(context).colorScheme.secondary,
+              width: 200,
+              text: "Nuova Escursione",
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const CreateEventView(),
+                  ),
+                );
+              },
+            )
+          : null,
       bottomNavigationBar: NavigationBar(
           onDestinationSelected: (int index) {
             setState(() {
