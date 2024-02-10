@@ -4,8 +4,7 @@ import 'package:mountain_app/Views/Login/LoginView.dart';
 import 'Screens/Homepage.dart';
 
 void main() {
-  // runApp(const MyApp(homepage: kDebugMode ? HomepageScreen() : LoginView()));
-  runApp(const MyApp(homepage: HomepageScreen()));
+  runApp(const MyApp(homepage: kDebugMode ? HomepageScreen() : LoginView()));
 }
 
 class MyApp extends StatelessWidget {

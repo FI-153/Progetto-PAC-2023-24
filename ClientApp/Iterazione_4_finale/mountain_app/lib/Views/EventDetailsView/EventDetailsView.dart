@@ -40,7 +40,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
         child: Column(
           children: [
             Image(
-              height: 300,
+              height: 200,
               width: double.infinity,
               fit: BoxFit.fitWidth,
               image: AssetImage(
