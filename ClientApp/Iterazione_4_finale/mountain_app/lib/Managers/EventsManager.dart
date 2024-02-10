@@ -4,6 +4,7 @@ import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Utilities/Constants.dart';
 import 'package:http/http.dart' as http;
+import 'package:mountain_app/Utilities/Misc.dart';
 
 /// Manager responsabile delle chiamate http al server. Creato con un pattern Singleton
 class EventsManger {
@@ -29,6 +30,10 @@ class EventsManger {
       List<dynamic> decoded = json.decode(response.body);
       List<Escursione> downEscursioni =
           decoded.map((escursione) => Escursione.fromJson(escursione)).toList();
+
+      downEscursioni.forEach((element) {
+        element.data = dateConverter(element.data);
+      });
 
       return downEscursioni;
     } catch (e) {
