@@ -1,5 +1,5 @@
 <div align="center">
-  <img src='./assetReadme/icon.png' width=350>
+  <img src='./assetReadme/icon.webp' width=300>
   <br></br>
   <h1> Progetto di PAC aa.2023-24: Mountain App </h1>
 
@@ -9,6 +9,8 @@
   [![Development - Costruisci e Pubblica l'immagine del gateway](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Gateway_Dev.yml/badge.svg)](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Gateway_Dev.yml)
   [![Deployment - Costruisci e Pubblica l'immagine del frontend](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Frontend_Dep.yml/badge.svg?branch=production)](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Frontend_Dep.yml)
   [![Development - Costruisci e Pubblica l'immagine del frontend](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Frontend_Dev.yml/badge.svg?branch=main)](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Frontend_Dev.yml)
+
+  <img src= './assetReadme/github-bg.webp' width=900>
 </div>
 
 ## Membri del team
