@@ -1,6 +1,5 @@
 <div align="center">
   <img src='./assetReadme/icon.webp' width=300>
-  <br></br>
   <h1> Progetto di PAC aa.2023-24: Mountain App </h1>
 
   [![Deployment - Costruisci e Pubblica l'immagine dei managers](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Managers_Dep.yml/badge.svg?branch=production)](https://github.com/FI-153/Progetto-PAC-2023-24/actions/workflows/Build_Push_Managers_Dep.yml)
