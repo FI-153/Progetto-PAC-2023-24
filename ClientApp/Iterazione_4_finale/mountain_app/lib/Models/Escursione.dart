@@ -3,25 +3,25 @@ import "Utente.dart";
 enum Difficolta { hard, medium, easy }
 
 class Escursione {
-  final int id;
-  final String nome;
-  final Difficolta difficolta;
-  final String luogo;
-  final String data;
-  final String descrizione;
-  final List<Utente> partecipanti;
-  final int idOrganizzatore;
-  final String distanza;
-  final String dislivello;
-  final String tempo;
-  final String altMax;
-  final String altMin;
-  final String strumentazione;
-  final String luogoRitrovo;
-  final String oraRitrovo;
-  final Uri imgUrl;
+  int id;
+  String nome;
+  Difficolta difficolta;
+  String luogo;
+  String data;
+  String descrizione;
+  List<Utente> partecipanti;
+  int idOrganizzatore;
+  String distanza;
+  String dislivello;
+  String tempo;
+  String altMax;
+  String altMin;
+  String strumentazione;
+  String luogoRitrovo;
+  String oraRitrovo;
+  Uri imgUrl;
 
-  const Escursione({
+  Escursione({
     required this.id,
     required this.nome,
     required this.difficolta,
@@ -66,7 +66,7 @@ class Escursione {
         "name": nome,
         "place": luogo,
         "difficulty": difficolta.name.toUpperCase(),
-        "date": "2024-02-26",
+        "date": data,
         "description": descrizione,
         "distance": distanza,
         "heightLevel": dislivello,

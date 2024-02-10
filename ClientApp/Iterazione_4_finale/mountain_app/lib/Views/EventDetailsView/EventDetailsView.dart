@@ -61,7 +61,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                         children: [
                           Text(widget.escursione.luogo, style: luogo),
                           Text(widget.escursione.nome, style: titolo),
-                          Text(widget.escursione.data, style: data),
+                          Text(widget.escursione.data),
                         ],
                       ),
                     ],

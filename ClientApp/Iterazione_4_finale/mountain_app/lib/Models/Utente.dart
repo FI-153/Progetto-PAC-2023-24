@@ -68,8 +68,8 @@ class Utente {
       "admin",
       true,
       true,
-      [115],
-      [115, 115, 115, 115],
+      [1],
+      [1, 1, 1, 1],
       15,
       Uri(
           path:
