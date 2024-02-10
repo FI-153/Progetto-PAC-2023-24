@@ -25,12 +25,8 @@ class ProfileView extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: 160,
-              child: Stack(
-                children: [
-                  backgroundImageSection(),
-                ],
-              ),
+              height: 200,
+              child: backgroundImageSection(),
             ),
             Container(
               height: 180,
