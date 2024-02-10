@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:mountain_app/Models/WeatherConditions.dart';
 import 'package:http/http.dart' as http;
 import 'package:mountain_app/Utilities/Constants.dart';
+import 'package:mountain_app/Utilities/Misc.dart';
 
 class WeatherManager {
   static WeatherManager _instance = WeatherManager._internal();
@@ -17,8 +18,8 @@ class WeatherManager {
   }
 
   Future<WeatherConditions> fetchWeather(String date, String location) async {
-    final response = await http
-        .get(Uri.parse('$_baseIpGateway/events/weather/$date/$location'));
+    final response = await http.get(Uri.parse(
+        '$_baseIpGateway/events/weather/${dateConverter(date, 'dd-MM-yyyy')}/$location'));
 
     switch (response.statusCode) {
       case 200:

@@ -47,7 +47,7 @@ Widget customDivider() {
   return const Divider(indent: 16, endIndent: 16);
 }
 
-String dateConverter(String date) {
+String dateConverter(String date, [String? format]) {
   final strToDate = DateTime.parse(date);
-  return DateFormat('dd/MM/yyyy').format(strToDate);
+  return DateFormat(format ?? 'dd/MM/yyyy').format(strToDate);
 }
