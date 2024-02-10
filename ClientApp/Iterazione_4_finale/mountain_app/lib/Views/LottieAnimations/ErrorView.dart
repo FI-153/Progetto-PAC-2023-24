@@ -22,7 +22,7 @@ class ErrorView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Lottie.asset(
-                "error.json",
+                "/assets/error.json",
                 repeat: true,
                 width: 200,
                 reverse: true,
