@@ -15,7 +15,7 @@ class ReservationRepositoryTest {
                 //when
                 Reservation result = underTest.findById(expected.getId()).get();
 
-                //thenà
+                //then
                 assertEquals(expected.getId(), result.getId());
         }
 }
