@@ -22,12 +22,14 @@
 | Sabrin Maatoug | 1065576 | s.maatoug@studenti.unibg.it
 
 ## Demo
-Una demo del progetto è dipsonibile all'indirrizzo <a href="http://165.227.152.216:9000" target="_blank" rel="noreferrer noopener"> http://165.227.152.216:9000 </a>. Per accedere è possibile usare uno dei profili generati come mockup con ChatGPT all'iterazione 3. Maggiori dettagli sono disponili nella guida utente dell'iterazione 4.
+Una demo del progetto è dipsonibile all'indirrizzo <a href="http://165.227.152.216:9000" target="_blank" rel="noreferrer noopener"> http://165.227.152.216:9000 </a>. Per accedere è possibile usare uno dei profili generati come mockup con ChatGPT all'iterazione 3. Maggiori dettagli sono disponibili nella guida utente dell'iterazione 4.
+> [!NOTE]
+> Trattandosi di un app pensata per mobile consigliamo di stringere la finestra del browser per un'esperienza migliore. 
 
 ## Quickstart
 Potete eseguire il progetto con il seguente comando, attraverso curl e docker-compose. Il file "docker-compose.yml" verrà scaricato in locale e poi eseguito
 ```
-curl -O https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/production/docker-compose.yml && docker compose up -d
+curl -O https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/production/docker-compose.yml && docker compose up
 ```
 <br>
 
@@ -39,7 +41,7 @@ curl -O https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/production
 
 <br>
 
-Per lanciare un aggiornamento di tutte le immagini che compongono l'architettura usate
+Per lanciare manualmente un aggiornamento di tutte le immagini che compongono l'architettura usate
 ```
 docker start manual-update
 ```
