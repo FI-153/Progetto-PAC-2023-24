@@ -10,9 +10,11 @@ Per eseguire il progetto sulla propria macchina si dovrà procedere in 6 passagg
   \item Attendere l'installazione di tutti i servizi (potrebbe richiedere un pò di tempo dipendentemente dalla velocità della propria rete internet);
   \item È ora possibile utilizzare il servizio:
   \begin{itemize}
-    \item Collegarsi ad \href{http://localhost:8080}{http://localhost:8080} se si vuole interagire direttamente con i manager (per esempio per debugging);
-    \item Collegarsi ad \href{http://localhost:8085}{http://localhost:8085} se si vuole interagire direttamente con il gateway (per esempio per debugging);
-    \item Collegarsi ad \href{http://localhost:9000}{http://localhost:9000} se si vuole interagire con il frontend della app mobile. Essendo l'app pensata per essere eseguita unicamente su dispositivi mobili consigliamo di \textbf{restringere in larghezza la pagina del browser} in modo da simulare le dimensioni di uno smartphone.
+    \item Collegarsi a \href{http://localhost:8080}{http://localhost:8080} se si vuole interagire direttamente con i manager (per esempio per debugging);
+    \item Collegarsi a \href{http://localhost:8085}{http://localhost:8085} se si vuole interagire direttamente con il gateway (per esempio per debugging);
+    \item Collegarsi a \href{http://localhost:9000}{http://localhost:9000} se si vuole interagire con il frontend della app mobile. Essendo l'app pensata per essere eseguita unicamente su dispositivi mobili consigliamo di \textbf{restringere in larghezza la pagina del browser} in modo da simulare le dimensioni di uno smartphone.
+    \item     
+    \item Collegarsi a \href{http://localhost:5050}{http://localhost:5050} se si vuole interagire in maniera grafica con il database attraverso pgAdmin (per esempio per debugging);
   \end{itemize}
 \end{enumerate}
 Alla sezione \href{https://github.com/FI-153/Progetto-PAC-2023-24/blob/main/README.md#quickstart}{QuickStart} del readme.md della repository è possibile trovare un comando che velocizza l'esecuzione in locale dell'architettura scaricando il docker-compose.yml attraverso curl ed esegendolo subito dopo.
@@ -22,7 +24,10 @@ Per facilitare la correzzione del progetto abbiamo pensato di pubblicare su di u
   \item \href{http://165.227.152.216:8080}{http://165.227.152.216:8080} se si vuole interagire direttamente con i manager (per esempio per debugging);
   \item \href{http://165.227.152.216:8085}{http://165.227.152.216:8085} se si vuole interagire direttamente con il gateway (per esempio per debugging);
   \item \href{http://165.227.152.216:9000}{http://165.227.152.216:9000} se si vuole interagire con il frontend della app mobile. Essendo l'app pensata per essere eseguita unicamente su dispositivi mobili consigliamo di \textbf{restringere in larghezza la pagina del browser} in modo da simulare le dimensioni di uno smartphone.
+  \item     
+  \item Collegarsi a \href{http://165.227.152.216:5050}{http://165.227.152.216:5050} se si vuole interagire in maniera grafica con il database attraverso pgAdmin (per esempio per debugging);
 \end{itemize}
+Abbiamo deciso di lasciare aperte all'esterno sia la porta 8080 che la porta 8085 per soli scopi didattici, sottolineiamo che se si non si trattasse di un progetto dimostrativo avremmo lasciato solo la porta 9000 per il frontend e 5050 per pgAdmin.
 
 
 
