@@ -5,14 +5,12 @@ services:
     image: freddy153/ventura-boulevard:latest-deployment
     container_name: managers
     restart: unless-stopped
-    ports:
-      - 8080:8080
+    # Rimuovere i segiuenti due commenti se si vuole accedere dall'esterno direttamente ai manager
+    # ports:
+    #   - 8080:8080
     depends_on:
       db:
         condition: service_healthy
-    networks:
-      - shared-net
-      - internal-net
 
   gateway:
     image: freddy153/radio-nowhere:latest-deployment
@@ -20,12 +18,8 @@ services:
     restart: unless-stopped
     ports:
       - "8085:8085"
-    networks:
-      - shared-net
     depends_on:
       - managers
-    expose:
-      - "8085"
 
   frontend:
     image: freddy153/zombie-zoo:latest-deployment
@@ -33,12 +27,8 @@ services:
     restart: unless-stopped
     depends_on:
       - gateway
-    networks:
-      - shared-net
     ports:
       - "9000:9000"
-    expose:
-      - "9000"
 
   db:
     image: postgres
@@ -64,13 +54,8 @@ services:
       retries: 10
     volumes:
       - ./Backend/Iterazione3/dbinit:/docker-entrypoint-initdb.d/
-    ports:
-      - "5432:5432"
-    expose:
-      - "5432"
-    networks:
-      - internal-net
 
+  # Tool per la gestione del DB attraverso UI
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin
@@ -83,9 +68,8 @@ services:
         condition: service_healthy
     ports:
       - "5050:80"
-    networks:
-      - shared-net
 
+  # Updater automatico
   watchtower-autoupdate:
     image: containrrr/watchtower
     restart: unless-stopped
@@ -93,6 +77,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --interval 86400 --cleanup --remove-volumes --include-restarting --log-format Pretty
 
+  # Updater manuale
   watchtower-manualupdate:
     image: containrrr/watchtower
     container_name: manual-update
@@ -102,7 +87,3 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --run-once --cleanup --remove-volumes --include-restarting --log-level info --log-format Pretty
-
-networks:
-  shared-net:
-  internal-net:
