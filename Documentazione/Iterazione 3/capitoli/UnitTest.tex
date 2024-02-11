@@ -1,31 +1,26 @@
 \subsection{Unit test}
-Nell'iterazione 3 è stata testata la funzione findById.
+Nell'iterazione 3 è stata testata la funzione findById() della classe ReservationRepository.
 
 \begin{lstlisting}
 @DataJpaTest
-class EventRepositoryTest {
+class ReservationRepositoryTest {
 
         @Autowired
-        private EventRepository underTest;
+        private ReservationRepository underTest;
 
         @Test
         void findById() {
 
-        String stringaTest = "test";
-        //given
-        Date date = new Date(100);
-        Event expected = new Event(stringaTest, stringaTest, 
-        EventLevel.MEDIUM, date, stringaTest, stringaTest, 
-        stringaTest, stringaTest, stringaTest, stringaTest, 
-        stringaTest, new Integer(4));
-        underTest.save(expected);
+                //given
+                Date date = new Date(100);
+                Reservation expected = new Reservation(1, date, new Boolean(true));
+                underTest.save(expected);
 
-        //when
-        Event result = underTest.findById(expected.getId()).get();
+                //when
+                Reservation result = underTest.findById(expected.getId()).get();
 
-        //then
-        assertThat(expected.getDescription())
-        .isEqualTo(result.getDescription());
+                //then
+                assertEquals(expected.getId(), result.getId());
         }
 }
 \end{lstlisting}
@@ -34,7 +29,7 @@ class EventRepositoryTest {
 \begin{center}
   % Requires \usepackage{graphicx}
 
-  \includegraphics[width=16cm]{Iterazione 2/test/unit test/unit.PNG}\\
+  \includegraphics[width=16cm]{Iterazione 3/test/unit test/unit.PNG}\\
   \caption{findById()}
 \end{center}
 \end{figure}
