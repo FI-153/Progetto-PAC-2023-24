@@ -8,9 +8,11 @@ services:
     ports:
       - 8080:8080
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - shared-net
+      - internal-net
 
   gateway:
     image: freddy153/radio-nowhere:latest-deployment
@@ -46,12 +48,28 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
       POSTGRES_DB: test_db
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "pg_isready",
+          "-q",
+          "-d",
+          "postgres",
+          "-U",
+          "root"
+        ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    volumes:
+      - ./Backend/Iterazione3/dbinit:/docker-entrypoint-initdb.d/
     ports:
       - "5432:5432"
     expose:
       - "5432"
     networks:
-      - shared-net
+      - internal-net
 
   pgadmin:
     image: dpage/pgadmin4
@@ -61,7 +79,8 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: root
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     ports:
       - "5050:80"
     networks:
@@ -86,3 +105,4 @@ services:
 
 networks:
   shared-net:
+  internal-net:
