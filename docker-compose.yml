@@ -5,9 +5,8 @@ services:
     image: freddy153/ventura-boulevard:latest-deployment
     container_name: managers
     restart: unless-stopped
-    # Rimuovere i segiuenti due commenti se si vuole accedere dall'esterno direttamente ai manager
-    # ports:
-    #   - 8080:8080
+    ports:
+      - 8080:8080
     depends_on:
       db:
         condition: service_healthy
