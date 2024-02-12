@@ -18,7 +18,7 @@ class _TileViewState extends State<TileView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 220,
+      constraints: BoxConstraints(maxHeight: 220, minHeight: 180),
       width: double.infinity,
       child: DecoratedBox(
         decoration: BoxDecoration(

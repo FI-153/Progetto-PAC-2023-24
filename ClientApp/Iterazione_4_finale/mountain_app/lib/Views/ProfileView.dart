@@ -100,6 +100,7 @@ class ProfileView extends StatelessWidget {
     return utente.iscrizioniPassate.isEmpty
         ? Center(child: Text("Non ci sono esperienze passate."))
         : Container(
+            constraints: BoxConstraints(maxWidth: 500),
             height: 900,
             child: ListView.builder(
               itemCount: utente.iscrizioniPassate.length,

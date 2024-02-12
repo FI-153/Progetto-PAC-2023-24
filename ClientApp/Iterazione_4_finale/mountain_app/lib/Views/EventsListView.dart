@@ -13,22 +13,27 @@ class EventsListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return escursioni.isEmpty
         ? EmptyStateView(text: 'Non ci sono escursioni...')
-        : ListView.builder(
-            itemCount: escursioni.length,
-            cacheExtent: 10000,
-            itemBuilder: (context, index) => ListTile(
-              title: TileView(
-                escursione: escursioni[index],
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        EventDetailsView(escursione: escursioni[index]),
+        : Center(
+            child: Container(
+              constraints: BoxConstraints(maxWidth: 500),
+              child: ListView.builder(
+                itemCount: escursioni.length,
+                cacheExtent: 10000,
+                itemBuilder: (context, index) => ListTile(
+                  title: TileView(
+                    escursione: escursioni[index],
                   ),
-                );
-              },
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            EventDetailsView(escursione: escursioni[index]),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ),
           );
   }
