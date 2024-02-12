@@ -4,8 +4,8 @@ import 'package:mountain_app/Views/EventDetailsView/EventDetailsView.dart';
 import 'package:mountain_app/Views/LottieAnimations/EmptyStateView.dart';
 import 'package:mountain_app/Views/TileView/TileView.dart';
 
-class EventsListView extends StatelessWidget {
-  const EventsListView({super.key, required this.escursioni});
+class EventsGridView extends StatelessWidget {
+  const EventsGridView({super.key, required this.escursioni});
 
   final List<Escursione> escursioni;
 
@@ -15,11 +15,17 @@ class EventsListView extends StatelessWidget {
         ? EmptyStateView(text: 'Non ci sono escursioni...')
         : Center(
             child: Container(
-              constraints: BoxConstraints(maxWidth: 500),
-              child: ListView.builder(
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisExtent: 220,
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 0,
+                    crossAxisCount:
+                        (MediaQuery.sizeOf(context).width.round() / 500)
+                            .floor()),
                 itemCount: escursioni.length,
-                cacheExtent: 10000,
                 itemBuilder: (context, index) => ListTile(
+                  hoverColor: Color.fromRGBO(1, 1, 1, 0),
                   title: TileView(
                     escursione: escursioni[index],
                   ),

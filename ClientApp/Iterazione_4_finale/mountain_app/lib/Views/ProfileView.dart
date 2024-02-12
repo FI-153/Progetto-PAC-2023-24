@@ -69,7 +69,7 @@ class ProfileView extends StatelessWidget {
                 ),
               ),
             ),
-            excursionListSection(),
+            excursionListSection(context),
           ],
         ),
       ),
@@ -96,17 +96,25 @@ class ProfileView extends StatelessWidget {
     );
   }
 
-  Widget excursionListSection() {
+  Widget excursionListSection(BuildContext context) {
     return utente.iscrizioniPassate.isEmpty
         ? Center(child: Text("Non ci sono esperienze passate."))
-        : Container(
-            constraints: BoxConstraints(maxWidth: 500),
-            height: 900,
-            child: ListView.builder(
-              itemCount: utente.iscrizioniPassate.length,
-              itemBuilder: (context, index) {
-                return DownloadListTile(utente: utente, index: index);
-              },
+        : Center(
+            child: Container(
+              height: 900,
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisExtent: 220,
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 0,
+                    crossAxisCount:
+                        (MediaQuery.sizeOf(context).width.round() / 500)
+                            .floor()),
+                itemCount: utente.iscrizioniPassate.length,
+                itemBuilder: (context, index) {
+                  return DownloadListTile(utente: utente, index: index);
+                },
+              ),
             ),
           );
   }

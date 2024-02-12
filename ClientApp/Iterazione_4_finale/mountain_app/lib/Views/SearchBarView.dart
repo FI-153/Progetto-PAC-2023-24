@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
-import 'package:mountain_app/Views/EventsListView.dart';
+import 'package:mountain_app/Views/EventsGridView.dart';
 
 class SearchBarView extends StatefulWidget {
   final List<Escursione> escursioni;
@@ -101,7 +101,7 @@ class _SearchBarViewState extends State<SearchBarView> {
       padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
       child: SizedBox(
         height: 2000,
-        child: EventsListView(escursioni: displayedEvents),
+        child: EventsGridView(escursioni: displayedEvents),
       ),
     );
   }
