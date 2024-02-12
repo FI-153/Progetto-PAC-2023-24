@@ -22,7 +22,7 @@
 | Sabrin Maatoug | 1065576 | s.maatoug@studenti.unibg.it
 
 ## Demo
-Una demo del progetto è dipsonibile all'indirrizzo <a href="http://165.227.152.216:9000" target="_blank" rel="noreferrer noopener"> http://165.227.152.216:9000 </a>. Per accedere è possibile usare uno dei profili generati come mockup con ChatGPT all'iterazione 3. Maggiori dettagli sono disponibili nella guida utente dell'iterazione 4.
+Una demo del progetto è disponibile all'indirizzo <a href="http://165.227.152.216:9000" target="_blank" rel="noreferrer noopener"> http://165.227.152.216:9000 </a>. Per accedere è possibile usare uno dei profili generati come mockup con ChatGPT all'iterazione 3. Maggiori dettagli sono disponibili nella guida utente dell'iterazione 4.
 > [!NOTE]
 > Trattandosi di un app pensata per mobile consigliamo di stringere la finestra del browser per un'esperienza migliore. 
 
@@ -34,7 +34,7 @@ curl -O https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/production
 <br>
 
 > [!IMPORTANT]
-> È necessario che il deamon di Docker sia attivo.
+> È necessario che il daemon di Docker sia attivo.
 
 > [!CAUTION]
 > Questa operazione sovrascriverà ogni file chiamato "docker-compose.yml" nella cartella in cui viene eseguito.
