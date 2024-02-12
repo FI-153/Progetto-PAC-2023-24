@@ -21,7 +21,7 @@ class EventsGridView extends StatelessWidget {
                     mainAxisSpacing: 16,
                     crossAxisSpacing: 0,
                     crossAxisCount:
-                        (MediaQuery.sizeOf(context).width.round() / 500)
+                        (MediaQuery.sizeOf(context).width.round() / 460)
                             .floor()),
                 itemCount: escursioni.length,
                 itemBuilder: (context, index) => ListTile(

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 class Utente {
   int id;
@@ -12,7 +13,7 @@ class Utente {
   List<int> iscrizioni;
   List<int> iscrizioniPassate;
   double esperienza;
-  Uri urlImmagineProfilo;
+  String imgPath;
 
   Utente(
     this.id,
@@ -26,7 +27,7 @@ class Utente {
     this.iscrizioni,
     this.iscrizioniPassate,
     this.esperienza,
-    this.urlImmagineProfilo,
+    this.imgPath,
   ) {}
 
   ///Informazioni dell'utente loggato nel sistema
@@ -45,7 +46,7 @@ class Utente {
         iscrizioni = List.from(json['bookedEvents'] ?? []),
         iscrizioniPassate = List.from(json['pastBookedEvents'] ?? []),
         esperienza = json['experience'] ?? 15,
-        urlImmagineProfilo = Uri(path: ''),
+        imgPath = randomizedProfileImage(),
         basicAuth =
             'Basic ${base64Encode(utf8.encode("$json['email']:$json['password']"))}';
 
@@ -58,38 +59,41 @@ class Utente {
         "profileRole": (isOrganizer) ? "ORGANIZER" : "USER"
       };
 
+  static String randomizedProfileImage() {
+    int num = Random().nextInt(4) + 1 % 4;
+    return 'images/me${num.toString()}.png';
+  }
+
 //Dati mock usati per lo sviluppo
   static Utente utenteMock1 = Utente(
-      2,
-      "YWRtaW5AYWRtaW4uY29tOmFkbWlu",
-      "Cristian(L)",
-      "Tironi",
-      "admin@admin.com",
-      "admin",
-      true,
-      true,
-      [1],
-      [1, 1, 1, 1],
-      15,
-      Uri(
-          path:
-              "https://images.pexels.com/photos/19551874/pexels-photo-19551874/free-photo-of-golden-retriever-in-christmas-headband.jpeg"));
+    2,
+    "YWRtaW5AYWRtaW4uY29tOmFkbWlu",
+    "Cristian(L)",
+    "Tironi",
+    "admin@admin.com",
+    "admin",
+    true,
+    true,
+    [1],
+    [1, 1, 1, 1],
+    15,
+    randomizedProfileImage(),
+  );
 
   static Utente utenteMock2 = Utente(
-      131,
-      "YWRtaW5AYWRtaW4uY29tOmFkbWlu",
-      "Federico(L)",
-      "Imberti",
-      "admin@admin.com",
-      "admin",
-      true,
-      false,
-      [37, 67],
-      [37, 67],
-      15,
-      Uri(
-          path:
-              "https://as2.ftcdn.net/v2/jpg/03/26/98/51/1000_F_326985142_1aaKcEjMQW6ULp6oI9MYuv8lN9f8sFmj.jpg"));
+    131,
+    "YWRtaW5AYWRtaW4uY29tOmFkbWlu",
+    "Federico(L)",
+    "Imberti",
+    "admin@admin.com",
+    "admin",
+    true,
+    false,
+    [37, 67],
+    [37, 67],
+    15,
+    randomizedProfileImage(),
+  );
 
   static List<Utente> listaOrganizzatoriMock = List.filled(2, utenteMock1);
   static List<Utente> listaPartecipantiMock = List.filled(10, utenteMock2);

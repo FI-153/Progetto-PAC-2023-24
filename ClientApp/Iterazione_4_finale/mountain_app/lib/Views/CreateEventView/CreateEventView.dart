@@ -298,7 +298,8 @@ class _CreateEventViewState extends State<CreateEventView> {
                     strumentazione: _gearFieldcontroller.text,
                     luogoRitrovo: _meetupPlaceFieldcontroller.text,
                     oraRitrovo: _meetupTimeFieldcontroller.text,
-                    imgUrl: Uri(path: ''),
+                    imgPath: "",
+                    authorImgPath: "",
                   );
 
                   Navigator.push(
