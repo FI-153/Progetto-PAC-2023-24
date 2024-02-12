@@ -437,6 +437,7 @@ app.post('/profiles', async (req, res) => {
     if (!authorization) {
       return res.sendStatus(401)
     }
+
     const postResponse = await axios.post(`${BASE_IP}/profiles/`, req.body, {
       headers: {
         'Authorization': authorization

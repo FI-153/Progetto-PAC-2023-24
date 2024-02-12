@@ -45,7 +45,7 @@ class UserManager {
       Uri.parse('$_baseIpGateway/profiles'),
       headers: {
         "Content-Type": "application/json",
-        HttpHeaders.authorizationHeader: _basicAuth,
+        HttpHeaders.authorizationHeader: _basicAuth
       },
       body: body,
     );

@@ -21,7 +21,7 @@ class SuccessView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Lottie.asset(
-                "checkmark.json",
+                "/assets/checkmark.json",
                 repeat: false,
                 width: 200,
                 height: 200,

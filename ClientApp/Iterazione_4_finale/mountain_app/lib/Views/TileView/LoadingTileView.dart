@@ -26,7 +26,7 @@ class _LoadingTileViewState extends State<LoadingTileView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Lottie.asset(
-                    'tileLoading.json',
+                    '/assets/tileLoading.json',
                     height: 200,
                   )
                 ],

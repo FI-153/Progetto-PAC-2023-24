@@ -42,8 +42,8 @@ class Utente {
             ? false
             : true,
         isLoggedIn = true,
-        iscrizioni = List.from(json['bookedEvents']),
-        iscrizioniPassate = List.from(json['pastBookedEvents']),
+        iscrizioni = List.from(json['bookedEvents'] ?? []),
+        iscrizioniPassate = List.from(json['pastBookedEvents'] ?? []),
         esperienza = json['experience'] ?? 15,
         urlImmagineProfilo = Uri(path: ''),
         basicAuth =
@@ -64,12 +64,12 @@ class Utente {
       "YWRtaW5AYWRtaW4uY29tOmFkbWlu",
       "Cristian(L)",
       "Tironi",
-      "cri@gmail.com",
-      "tiru",
+      "admin@admin.com",
+      "admin",
       true,
       true,
-      [115],
-      [115, 115, 115, 115],
+      [1],
+      [1, 1, 1, 1],
       15,
       Uri(
           path:

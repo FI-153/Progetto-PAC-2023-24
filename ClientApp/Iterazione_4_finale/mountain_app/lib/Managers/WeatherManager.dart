@@ -17,6 +17,8 @@ class WeatherManager {
   }
 
   Future<WeatherConditions> fetchWeather(String date, String location) async {
+    date = date.split('/').reduce((value, element) => value + '-' + element);
+
     final response = await http
         .get(Uri.parse('$_baseIpGateway/events/weather/$date/$location'));
 

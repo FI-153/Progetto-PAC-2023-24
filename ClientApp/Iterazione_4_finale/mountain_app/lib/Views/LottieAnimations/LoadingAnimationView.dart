@@ -14,7 +14,7 @@ class LoadingAnimationView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Lottie.asset(
-                'mountainman.json',
+                '/assets/mountainman.json',
                 height: 400,
               ),
               Text(

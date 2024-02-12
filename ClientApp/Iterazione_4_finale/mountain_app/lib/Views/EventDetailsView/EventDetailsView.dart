@@ -40,7 +40,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
         child: Column(
           children: [
             Image(
-              height: 300,
+              height: 200,
               width: double.infinity,
               fit: BoxFit.fitWidth,
               image: AssetImage(
@@ -61,7 +61,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                         children: [
                           Text(widget.escursione.luogo, style: luogo),
                           Text(widget.escursione.nome, style: titolo),
-                          Text(widget.escursione.data, style: data),
+                          Text(widget.escursione.data),
                         ],
                       ),
                     ],
