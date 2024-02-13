@@ -45,7 +45,7 @@ class UserManager {
     });
 
     switch (response.statusCode) {
-      case 202:
+      case 200:
         var decoded = json.decode(response.body);
         return Utente.fromJson(decoded);
 

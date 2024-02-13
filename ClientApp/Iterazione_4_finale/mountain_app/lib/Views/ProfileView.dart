@@ -77,7 +77,7 @@ class _ProfileViewState extends State<ProfileView> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  profilePhotoView(),
+                                  profilePhotoView(downUtente),
                                   SizedBox(
                                     height: 90,
                                     child: Column(
@@ -187,12 +187,16 @@ class _ProfileViewState extends State<ProfileView> {
     );
   }
 
-  Widget profilePhotoView() {
+  Widget profilePhotoView(Utente utente) {
     return Padding(
       padding: EdgeInsets.fromLTRB(0, 0, 16, 0),
       child: CircleAvatar(
         radius: 60,
-        foregroundImage: AssetImage('images/meProfile.png'),
+        foregroundImage: AssetImage(
+          Utente.loggedUser.id == utente.id
+              ? 'images/meProfile.png'
+              : utente.imgPath,
+        ),
       ),
     );
   }

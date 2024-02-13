@@ -19,13 +19,13 @@ class EventsGridView extends StatelessWidget {
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     mainAxisExtent: 220,
                     mainAxisSpacing: 16,
-                    crossAxisSpacing: 0,
+                    crossAxisSpacing: 8,
                     crossAxisCount:
-                        (MediaQuery.sizeOf(context).width.round() / 460)
-                            .floor()),
+                        (MediaQuery.sizeOf(context).width / 460).floor()),
                 itemCount: escursioni.length,
                 itemBuilder: (context, index) => ListTile(
                   hoverColor: Color.fromRGBO(1, 1, 1, 0),
+                  contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
                   title: TileView(
                     escursione: escursioni[index],
                   ),
