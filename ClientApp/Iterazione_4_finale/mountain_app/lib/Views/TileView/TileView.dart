@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Models/Escursione.dart';
+import 'package:mountain_app/Views/ProfileView.dart';
 
 class TileView extends StatefulWidget {
   final Escursione escursione;
@@ -14,8 +15,7 @@ class _TileViewState extends State<TileView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints:
-          BoxConstraints(maxHeight: 220, minHeight: 180, maxWidth: 460),
+      constraints: BoxConstraints(maxHeight: 220, minHeight: 180),
       width: double.infinity,
       child: DecoratedBox(
         decoration: BoxDecoration(
@@ -40,6 +40,7 @@ class _TileViewState extends State<TileView> {
                 children: [
                   organizerImageSection(
                     imgPath: widget.escursione.authorImgPath,
+                    idOrganizer: widget.escursione.idOrganizzatore,
                   ),
                   Spacer(),
                   dateTitleDifficultySection(
@@ -59,19 +60,32 @@ class _TileViewState extends State<TileView> {
 
 class organizerImageSection extends StatelessWidget {
   final String imgPath;
+  final int idOrganizer;
   const organizerImageSection({
     super.key,
     required this.imgPath,
+    required this.idOrganizer,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(foregroundImage: AssetImage(imgPath)),
+          FloatingActionButton.extended(
+            shape: CircleBorder(),
+            label: CircleAvatar(
+              foregroundImage: AssetImage(imgPath),
+              radius: 30,
+            ),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: ((context) {
+                return ProfileView(idUtente: idOrganizer);
+              })));
+            },
+          )
         ],
       ),
     );

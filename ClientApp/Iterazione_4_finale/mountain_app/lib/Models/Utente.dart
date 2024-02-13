@@ -67,22 +67,22 @@ class Utente {
 //Dati mock usati per lo sviluppo
   static Utente utenteMock1 = Utente(
     2,
-    "YWRtaW5AYWRtaW4uY29tOmFkbWlu",
+    "Basic YWRtaW5AYWRtaW4uY29tOmFkbWlu",
     "Cristian(L)",
     "Tironi",
     "admin@admin.com",
     "admin",
     true,
     true,
-    [1],
-    [1, 1, 1, 1],
+    [6],
+    [6, 7, 8],
     15,
     randomizedProfileImage(),
   );
 
   static Utente utenteMock2 = Utente(
     131,
-    "YWRtaW5AYWRtaW4uY29tOmFkbWlu",
+    "Basic YWRtaW5AYWRtaW4uY29tOmFkbWlu",
     "Federico(L)",
     "Imberti",
     "admin@admin.com",
