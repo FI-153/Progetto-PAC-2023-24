@@ -59,7 +59,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) =>
-                                  ProfileView(utente: this.utente),
+                                  ProfileView(idUtente: utente.id),
                             ),
                           );
                         },
