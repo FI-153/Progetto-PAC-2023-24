@@ -52,7 +52,7 @@ services:
       interval: 10s
       retries: 10
     volumes:
-      - ./Backend/Iterazione3/dbinit:/docker-entrypoint-initdb.d/
+      - ./dbinit:/docker-entrypoint-initdb.d/
 
   # Tool per la gestione del DB attraverso UI
   pgadmin:
@@ -74,7 +74,7 @@ services:
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: --interval 86400 --cleanup --remove-volumes --include-restarting --log-format Pretty
+    command: --interval 86400 --cleanup --remove-volumes --include-restarting --log-format Pretty managers gateway frontend pgadmin
 
   # Updater manuale
   watchtower-manualupdate:
@@ -85,4 +85,4 @@ services:
         condition: service_completed_successfully
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: --run-once --cleanup --remove-volumes --include-restarting --log-level info --log-format Pretty
+    command: --run-once --cleanup --remove-volumes --include-restarting --log-level info --log-format Pretty managers gateway frontend pgadmin

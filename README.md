@@ -29,7 +29,7 @@ Una demo del progetto è disponibile all'indirizzo <a href="http://165.227.152.2
 ## Quickstart
 Potete eseguire il progetto con il seguente comando, attraverso curl e docker-compose. Il file "docker-compose.yml" verrà scaricato in locale e poi eseguito
 ```
-curl -O https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/production/docker-compose.yml && docker compose up
+curl -O https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/production/docker-compose.yml && rm -r dbinit; mkdir dbinit && cd dbinit && curl -O https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/production/Backend/Iterazione3/dbinit/init.sql && cd .. && docker compose up
 ```
 <br>
 
