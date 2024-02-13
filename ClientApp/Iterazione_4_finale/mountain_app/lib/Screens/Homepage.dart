@@ -4,7 +4,7 @@ import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Views/CreateEventView/CreateEventView.dart';
 import 'package:mountain_app/Views/CutomButotns.dart';
-import 'package:mountain_app/Views/EventsListView.dart';
+import 'package:mountain_app/Views/EventsGridView.dart';
 import 'package:mountain_app/Views/LottieAnimations/LoadingAnimationView.dart';
 import 'package:mountain_app/Views/ProfileView.dart';
 import 'ForYouScreen.dart';
@@ -59,7 +59,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) =>
-                                  ProfileView(utente: this.utente),
+                                  ProfileView(idUtente: utente.id),
                             ),
                           );
                         },
@@ -136,7 +136,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
 
           return SafeArea(
             child: <Widget>[
-              EventsListView(escursioni: downedEvents),
+              EventsGridView(escursioni: downedEvents),
               SubscriptionsScreen(),
               ForYouScreen(escursioni: downedEvents),
             ][currentPageIndex],

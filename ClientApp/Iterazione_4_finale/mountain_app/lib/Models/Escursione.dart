@@ -1,3 +1,4 @@
+import "dart:math";
 import "Utente.dart";
 
 enum Difficolta { hard, medium, easy }
@@ -19,7 +20,8 @@ class Escursione {
   String strumentazione;
   String luogoRitrovo;
   String oraRitrovo;
-  Uri imgUrl;
+  String imgPath;
+  String authorImgPath;
 
   Escursione({
     required this.id,
@@ -38,7 +40,8 @@ class Escursione {
     required this.strumentazione,
     required this.luogoRitrovo,
     required this.oraRitrovo,
-    required this.imgUrl,
+    required this.imgPath,
+    required this.authorImgPath,
   });
 
   Escursione.fromJson(Map<String, dynamic> json)
@@ -57,9 +60,10 @@ class Escursione {
         strumentazione = json['tools'],
         luogoRitrovo = json['meetingPlace'],
         oraRitrovo = json['time'],
-        imgUrl = Uri(path: ''),
+        imgPath = randomizedCoverImage(),
         idOrganizzatore = json['idProfile'] ?? Utente.utenteMock2.id,
-        partecipanti = Utente.listaPartecipantiMock;
+        partecipanti = Utente.listaPartecipantiMock,
+        authorImgPath = randomizedProfileImage();
 
   Map<String, dynamic> toJson(int maxPeople) => {
         'id': id,
@@ -77,6 +81,16 @@ class Escursione {
         "time": tempo,
         "idProfile": idOrganizzatore,
       };
+
+  static String randomizedCoverImage() {
+    int num = Random().nextInt(8) + 1 % 8;
+    return 'images/mountain${num.toString()}.png';
+  }
+
+  static String randomizedProfileImage() {
+    int num = Random().nextInt(4) + 1 % 4;
+    return 'images/me${num.toString()}.png';
+  }
 
   static Escursione escursioneMock = Escursione(
     id: 123,
@@ -96,7 +110,8 @@ class Escursione {
     strumentazione: "Tanta buona volontà",
     luogoRitrovo: "Fiumenero, BG",
     oraRitrovo: "7:30",
-    imgUrl: Uri(path: ""),
+    imgPath: randomizedCoverImage(),
+    authorImgPath: randomizedProfileImage(),
   );
 
   static List<Escursione> escursioniMock =

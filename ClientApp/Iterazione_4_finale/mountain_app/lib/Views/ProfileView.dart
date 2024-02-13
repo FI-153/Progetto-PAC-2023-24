@@ -1,79 +1,123 @@
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Managers/EventsManager.dart';
+import 'package:mountain_app/Managers/UserManager.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Utilities/Misc.dart';
 import 'package:mountain_app/Views/EventDetailsView/EventDetailsView.dart';
 import 'package:mountain_app/Views/Login/LoginView.dart';
+import 'package:mountain_app/Views/LottieAnimations/ErrorView.dart';
+import 'package:mountain_app/Views/LottieAnimations/LoadingAnimationView.dart';
 import 'package:mountain_app/Views/TileView/LoadingTileView.dart';
 import 'package:mountain_app/Views/TileView/TileView.dart';
 
-class ProfileView extends StatelessWidget {
-  const ProfileView({super.key, required this.utente});
+class ProfileView extends StatefulWidget {
+  const ProfileView({super.key, required this.idUtente});
 
-  final Utente utente;
+  final int idUtente;
+
+  @override
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
+  late Future<Utente> utente;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.idUtente == Utente.loggedUser.id) {
+      utente = Future.value(Utente.loggedUser);
+    } else {
+      utente = UserManager().fetchUser(widget.idUtente);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          if (utente.id == Utente.loggedUser.id) logoutButtonSection(context)
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: 200,
-              child: backgroundImageSection(),
+    return FutureBuilder<Utente>(
+        future: utente,
+        builder: ((context, snapshot) {
+          if (snapshot.hasError) {
+            return ErrorView(
+              text: 'Non è stato possibile scaricare l\'utente...',
+              popLevel: 1,
+            );
+          }
+
+          if (!snapshot.hasData) {
+            return LoadingAnimationView();
+          }
+
+          Utente downUtente = snapshot.data!;
+          return Scaffold(
+            appBar: AppBar(
+              actions: [
+                if (downUtente.id == Utente.loggedUser.id)
+                  logoutButtonSection(context)
+              ],
             ),
-            Container(
-              height: 180,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            profilePhotoView(),
-                            SizedBox(
-                              height: 90,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    height: 200,
+                    child: backgroundImageSection(),
+                  ),
+                  Container(
+                    height: 180,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  nameSurnameSection(),
-                                  experienceSection(),
-                                  if (utente.isOrganizer) organizerSection(),
+                                  profilePhotoView(),
+                                  SizedBox(
+                                    height: 90,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        nameSurnameSection(
+                                          downUtente.nome,
+                                          downUtente.cognome,
+                                        ),
+                                        experienceSection(
+                                          downUtente.esperienza,
+                                        ),
+                                        if (downUtente.isOrganizer)
+                                          organizerSection(),
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
-                            ),
-                          ],
-                        ),
-                        customDivider(),
-                        Text(
-                          "Esperienze Passate",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w600),
-                        ),
-                      ],
+                              customDivider(),
+                              Text(
+                                "Esperienze Passate",
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w600),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                  excursionListSection(context, downUtente),
+                ],
               ),
             ),
-            excursionListSection(),
-          ],
-        ),
-      ),
-    );
+          );
+        }));
   }
 
   IconButton logoutButtonSection(BuildContext context) {
@@ -89,30 +133,42 @@ class ProfileView extends StatelessWidget {
     );
   }
 
-  Text experienceSection() {
+  Text experienceSection(double exp) {
     return Text(
-      "Esperienza: " + utente.esperienza.toString() + "/30",
+      "Esperienza: " + exp.toString() + "/30",
       style: sottotitoloGrassetto,
     );
   }
 
-  Widget excursionListSection() {
+  Widget excursionListSection(
+    BuildContext context,
+    Utente utente,
+  ) {
     return utente.iscrizioniPassate.isEmpty
         ? Center(child: Text("Non ci sono esperienze passate."))
-        : Container(
-            height: 900,
-            child: ListView.builder(
-              itemCount: utente.iscrizioniPassate.length,
-              itemBuilder: (context, index) {
-                return DownloadListTile(utente: utente, index: index);
-              },
+        : Center(
+            child: Container(
+              height: 900,
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisExtent: 220,
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 0,
+                    crossAxisCount:
+                        (MediaQuery.sizeOf(context).width.round() / 500)
+                            .floor()),
+                itemCount: utente.iscrizioniPassate.length,
+                itemBuilder: (context, index) {
+                  return DownloadListTile(utente: utente, index: index);
+                },
+              ),
             ),
           );
   }
 
-  Text nameSurnameSection() {
+  Text nameSurnameSection(String name, String surname) {
     return Text(
-      utente.nome + " " + utente.cognome,
+      name + " " + surname,
       style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
     );
   }
