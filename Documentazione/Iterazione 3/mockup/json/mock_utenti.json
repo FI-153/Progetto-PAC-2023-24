@@ -1,0 +1,48 @@
+[
+{
+  "id": 1,
+  "firstName": "Martina",
+  "lastName": "Rizzo",
+  "email": "martina@gmail.com",
+  "phone": "+393333333333",
+  "password": "ghi",
+  "profileRole": "ORGANIZER"
+},
+{
+  "id": 2,
+  "firstName": "Isabella",
+  "lastName": "Conti",
+  "email": "isabella@gmail.com",
+  "phone": "+391111111111",
+  "password": "abc",
+  "profileRole": "ORGANIZER"
+},
+{
+  "id": 3,
+  "firstName": "Elena",
+  "lastName": "Ferrari",
+  "email": "elena@gmail.com",
+  "phone": "+394444444444",
+  "password": "jkl",
+  "profileRole": "ORGANIZER"
+},
+{
+  "id": 4,
+  "firstName": "Luca",
+  "lastName": "Rossi",
+  "email": "luca@gmail.com",
+  "phone": "+392222222222",
+  "password": "def",
+  "profileRole": "USER"
+},
+{
+  "id": 5,
+  "firstName": "Marco",
+  "lastName": "De Luca",
+  "email": "marco@gmail.com",
+  "phone": "+395555555555",
+  "password": "mno",
+  "profileRole": "USER"
+}
+
+]
