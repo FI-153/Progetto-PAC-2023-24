@@ -432,10 +432,15 @@ app.post('/events/new', async (req, res) => {
 
 app.post('/profiles', async (req, res) => {
   try {
-    const auth = Buffer.from("admin@admin.com:admin").toString('base64')
+    const { authorization } = req.headers;
+
+    if (!authorization) {
+      return res.sendStatus(401)
+    }
+
     const postResponse = await axios.post(`${BASE_IP}/profiles/`, req.body, {
       headers: {
-        'Authorization': auth
+        'Authorization': authorization
       }
     })
 

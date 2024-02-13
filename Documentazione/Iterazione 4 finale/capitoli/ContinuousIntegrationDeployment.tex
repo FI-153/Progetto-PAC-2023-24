@@ -1,32 +1,33 @@
 \section{Docker-compose, Continuous Integration e Continuous Deployment}
 Durante l'iterazione 4 abbiamo espanso e migliorato l'uso delle Github Actions per implementare l'approccio CI/CD che è stato delineato in \ref{sect:CICD_it3}.
-La nostra archittura è stata inoltre completata dall'aggiunta di 2 immagini. Per cooerdinarle le abbiamo assemblate nel `docker-compose.yml` \href{https://github.com/FI-153/Progetto-PAC-2023-24/blob/main/docker-compose.yml}{reperibile alla root della repository}. Così facendo è possibile lanciare l'intera archiettura com un semplice `docker-compose up'.
+La nostra architettura è stata inoltre completata dall'aggiunta di 2 immagini. Per coordinarle sono state assemblate nel file `docker-compose.yml` \href{https://github.com/FI-153/Progetto-PAC-2023-24/blob/main/docker-compose.yml}{reperibile alla root della repository}. Così facendo è possibile lanciare l'intera architettura com un semplice `docker-compose up'.
 \subsection{Immagini Docker e struttura finale del docker-compose}
-Rispetto a quanto descritto in \ref{sect:CICD_it3} abbiamo espanso la nostra containerizzazione a 3 immagini create da noi a partire dal nostro codice:
+Rispetto a quanto descritto in \ref{sect:CICD_it3} abbiamo espanso la nostra containerizzazione a 3 immagini compilate dal nostro codice:
 \begin{itemize}
   \item \href{https://hub.docker.com/repository/docker/freddy153/ventura_boulevard/general}{``ventura-boulevard''}, contenente il manager degli utenti e degli eventi;
   \item \href{https://hub.docker.com/repository/docker/freddy153/radio_nowhere/general}{``radio-nowhere''}, contenente l'API Gateway usato per comunicare con la mobile app;
   \item \href{https://hub.docker.com/repository/docker/freddy153/zombie_zoo/general}{``zombie-zoo''}, contenente il frontend della mobile app.
 \end{itemize}
-Con altre 2 disponibili liberamente:
+Con altre 3 disponibili liberamente:
 \begin{itemize}
   \item \href{https://github.com/containrrr/watchtower}{``watchtower''}, usata per la implementare Continuous Deployment (maggiori dettagli a \ref{subsect:CD_it2});
-  \item \href{https://hub.docker.com/_/postgres}{``postgress''}, usata per creare e gestire il database.
+  \item \href{https://hub.docker.com/_/postgres}{``postgres''}, l'immagine ufficiale di PostgreSQL, usata per creare e gestire il database. Abbiamo fatto in modo che lo schema venisse inizializzato quando l'immagine viene costruita in un container per la prima volta, inserendo inoltre l'utente admim. Per fare ciò abbiamo scritto uno script in SQL e impostato PostgreSQL affinché lo lanciasse al primo avvio. Le configurazioni di username, password e nome del database sono scritte in docker-compose.yml.
+  \item \href{https://hub.docker.com/r/dpage/pgadmin4/}{``pgadmin4''}, l'immagine ufficiale di \href{https://www.pgadmin.org}{``pgAdmin''}, usata per interagire con il database attraverso una UI. Le configurazioni di username, password e nome del database sono scritte in docker-compose.yml.
 \end{itemize}
 \newpage
 \subsection{Continuous Integration (CI)}
-Abbiamo riscritto le Actions dividendo la generazione di ognuna delle immagini e mantenendo la suddivisione "production" e "development" per distinguere le immagini pubblicate sull'ambiente di produzione da quelle sull'ambiente di sviluppo. In questo modo abbiamo attenuto 6 Actions che vengono eseguite in base a quale cartella della repository subisce una push. Di seguito riassumiamo ogni Actions, con la relativa descrizione e trigger.
+Abbiamo riscritto le Actions dividendo la generazione di ognuna delle immagini e mantenendo la suddivisione "deployment" e "development" per distinguere le immagini pubblicate sull'ambiente di produzione da quelle sull'ambiente di sviluppo. In questo modo abbiamo attenuto 6 Actions che vengono eseguite in base a quale cartella della repository subisce una push. Di seguito riassumiamo ogni Actions, con la relativa descrizione e trigger.
 \subsubsection{Github Actions}
 \begin{description}
-  \item[Dep - Frontend] Costruisce e pubblica l'immagine del frontend dell'ambiente di sviluppo ad ogni push sulla branch ``main'' all'interno della cartella\\``\verb|ClientApp/Iterazione_4_finale/mountain_app|'';
-  \item[Dev - Frontend] Costruisce e pubblica l'immagine del frontend dell'ambiente di produzione ad ogni Push sulla branch ``production'' all'interno della cartella\\``\verb|ClientApp/Iterazione_4_finale/mountain_app|'';
+  \item[Dep - Frontend] Costruisce e pubblica l'immagine del frontend dell'ambiente di produzione ad ogni Push sulla branch ``production'' all'interno della cartella\\``\verb|ClientApp/Iterazione_4_finale/mountain_app|'';
   \item[Dep - Manager] Costruisce e pubblica l'immagine dei manager dell'ambiente di produzione ad ogni Push sulla branch ``production'' all'interno della cartella\\``\verb|Backend/Iterazione3/project|'';
-  \item[Dev - Manager] Costruisce e pubblica l'immagine dei manager dell'ambiente di produzione ad ogni Push sulla branch ``production'' all'interno della cartella\\``\verb|Backend/Iterazione3/project|'';
   \item[Dep - Gateway] Costruisce e pubblica l'immagine del gateway dell'ambiente di produzione ad ogni Push sulla branch ``production'' all'interno della cartella\\``\verb|Backend/Iterazione3/gateway|'';
-  \item[Dev - Gateway] Costruisce e pubblica l'immagine del gateway dell'ambiente di produzione ad ogni Push sulla branch ``production'' all'interno della cartella\\``\verb|Backend/Iterazione3/gateway|''.
+  \item[Dev - Frontend] Costruisce e pubblica l'immagine del frontend dell'ambiente di sviluppo ad ogni Push sulla branch ``main'' all'interno della cartella\\``\verb|ClientApp/Iterazione_4_finale/mountain_app|'';
+  \item[Dev - Manager] Costruisce e pubblica l'immagine dei manager dell'ambiente di sviluppo ad ogni Push sulla branch ``main'' all'interno della cartella\\``\verb|Backend/Iterazione3/project|'';
+  \item[Dev - Gateway] Costruisce e pubblica l'immagine del gateway dell'ambiente di sviluppo ad ogni Push sulla branch ``main'' all'interno della cartella\\``\verb|Backend/Iterazione3/gateway|''.
 \label{tab: github-actions-finali}
 \end{description}
 \newpage
 \subsection{Continuous Deployment (CD)}
 \label{subsect:CD_it2}
-Già in \ref{sect:CD_it3} avevamo introdutto Watchtower e il meccanismo usato per verificare se un immagine sulla quale viene costruito un container sia da aggiornare. Nell'iterazione 4 abbiamo migliorato l'uso che ne abbiamo fatto modificandone alcune impostazioni e includendolo nel docker-compose di tutta l'architettura. Abbiamo inoltre aggiunto un secondo container che abbiamo denominato ``manual-update''. Essenzialmente si tratta di un'istanza di Watchtower programmata per eseguire un solo update delle immagini nel momento in cui viene lanciata per poi spegnersi. Come suggerisce il nome questo container aggiuntivo risulta molto comodo per anticipare un update rispetto all'intervallo di 24 ore impostato sull'updater automatico. È bene notare che all'esecuzione di un aggiornamento manuale il timer dell'aggiornamento automatico non viene resettato. Per fare in modo che le due istanza della stessa immagine non entrassero in conflitto abbiamo programmato, nel docker-compose, l'updater manuale per non avviarsi in corrispondenza di `docker compose up' ma di aspettare piuttosto che venga invocato manualmente con il comando `docker start manual-update'.
+Già in \ref{sect:CD_it3} avevamo introdotto Watchtower e il meccanismo usato per verificare se un immagine sulla quale viene costruito un container sia da aggiornare. Nell'iterazione 4 abbiamo migliorato l'uso che ne abbiamo fatto modificandone alcune impostazioni e includendolo nel docker-compose di tutta l'architettura. Abbiamo inoltre aggiunto un secondo container denominato ``manual-update''. Essenzialmente si tratta di un'istanza di Watchtower programmata per eseguire un solo update delle immagini nel momento in cui viene lanciata per poi spegnersi. Come suggerisce il nome questo container aggiuntivo risulta molto comodo per anticipare un update rispetto all'intervallo di 24 ore impostato sull'updater automatico. È bene notare che all'esecuzione di un aggiornamento manuale il timer dell'aggiornamento automatico non viene resettato. Per fare in modo che le due istanze della stessa immagine non entrassero in conflitto abbiamo programmato, nel docker-compose, l'updater manuale per non avviarsi in corrispondenza di `docker compose up' ma di aspettare che venga invocato manualmente con il comando `docker start manual-update'.
