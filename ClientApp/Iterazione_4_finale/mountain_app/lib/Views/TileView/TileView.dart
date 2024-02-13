@@ -1,9 +1,6 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Models/Escursione.dart';
+import 'package:mountain_app/Views/ProfileView.dart';
 
 class TileView extends StatefulWidget {
   final Escursione escursione;
@@ -18,13 +15,13 @@ class _TileViewState extends State<TileView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 220,
+      constraints: BoxConstraints(maxHeight: 220, minHeight: 180),
       width: double.infinity,
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(24)),
           image: DecorationImage(
-            image: AssetImage(randomizedCoverImage()),
+            image: AssetImage(widget.escursione.imgPath),
             fit: BoxFit.fitWidth,
           ),
         ),
@@ -42,7 +39,8 @@ class _TileViewState extends State<TileView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   organizerImageSection(
-                    imageAddress: Uri(path: ''),
+                    imgPath: widget.escursione.authorImgPath,
+                    idOrganizer: widget.escursione.idOrganizzatore,
                   ),
                   Spacer(),
                   dateTitleDifficultySection(
@@ -61,34 +59,37 @@ class _TileViewState extends State<TileView> {
 }
 
 class organizerImageSection extends StatelessWidget {
-  final Uri imageAddress;
+  final String imgPath;
+  final int idOrganizer;
   const organizerImageSection({
     super.key,
-    required this.imageAddress,
+    required this.imgPath,
+    required this.idOrganizer,
   });
-
-  String randomizedProfileImage() {
-    int num = Random().nextInt(4) + 1 % 4;
-    return 'images/me${num.toString()}.png';
-  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(foregroundImage: AssetImage(randomizedProfileImage())),
+          FloatingActionButton.extended(
+            shape: CircleBorder(),
+            label: CircleAvatar(
+              foregroundImage: AssetImage(imgPath),
+              radius: 30,
+            ),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: ((context) {
+                return ProfileView(idUtente: idOrganizer);
+              })));
+            },
+          )
         ],
       ),
     );
   }
-}
-
-String randomizedCoverImage() {
-  int num = Random().nextInt(8) + 1 % 8;
-  return 'images/mountain${num.toString()}.png';
 }
 
 class dateTitleDifficultySection extends StatelessWidget {

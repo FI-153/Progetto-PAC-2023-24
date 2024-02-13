@@ -43,9 +43,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
               height: 200,
               width: double.infinity,
               fit: BoxFit.fitWidth,
-              image: AssetImage(
-                randomizedCoverImage(),
-              ),
+              image: AssetImage(widget.escursione.imgPath),
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -215,11 +213,6 @@ class _EventDetailsViewState extends State<EventDetailsView> {
         ),
       ),
     );
-  }
-
-  String randomizedCoverImage() {
-    int num = Random().nextInt(8) + 1 % 8;
-    return 'images/mountain${num.toString()}.png';
   }
 
   Widget selectPartecipantsButtonSection() {

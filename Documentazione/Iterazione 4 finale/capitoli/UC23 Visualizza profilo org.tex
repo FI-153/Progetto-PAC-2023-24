@@ -1,0 +1,31 @@
+\subsection{UC-23 Visualizzare profilo dell'organizzatore di un evento}
+L'utente può visualizzare il profilo di chi sta organizzando un evento.
+\\
+\\
+\textit{Breve Descrizione: Cliccando sulla foto profilo dell'organizzatore di un evento si visualizzano i dettagli del suo profilo.} 
+\\
+\\
+\textit{Attori Coinvolti: Sistema, Utente.}
+\\
+\\
+\textit{Precondizione: L'utente è iscritto alla piattaforma, loggato nella app e visualizza una lista di eventi}
+\\
+\\
+\textit{Postcondizione: L'utente visualizza il profilo del creatore di un dato evento.}
+\\
+\\
+\textit{Procedimento:}
+\begin{enumerate}
+	\item L'utente clicca l'immagine dell'organizzatore in alto a sinistra di una finestra che descrive un evento
+	\item Il sistema scarica i dati relativi all'utente [E1: Utente non trovato]
+	\item La pagina con le informazioni dell'utente organizzatore viene mostrata
+\end{enumerate}
+
+
+\textit{Eccezioni:}
+\begin{itemize}
+	\item E1: Utente non trovato
+	\begin{enumerate}
+		\item Viene mostrata una schermata di errore che invita l'utente a riprovare.
+	\end{enumerate}
+\end{itemize}

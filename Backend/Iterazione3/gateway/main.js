@@ -187,6 +187,26 @@ app.get('/profiles/:id', async (req, res) => {
       }
     });
 
+    //Richiesta get al server per ottenere l'esperienza dell'utente
+    const exp = await axios.get(`${BASE_IP}/profiles/level/${getResponse.data['id']}`, {
+      headers: {
+        'Authorization': authorization
+      }
+    })
+    getResponse.data['experience'] = exp.data
+
+    //Richiesta get al server per ottenere la lista degli eventi a cui l'utente è iscritto
+    const bookedEvents = await axios.get(`${BASE_IP}/profiles/${getResponse.data['id']}/reservations`, {
+      headers: {
+        'Authorization': authorization
+      }
+    });
+    var events = bookedEvents.data.map(function (elem) {
+      return elem.event.id
+    })
+    getResponse.data['bookedEvents'] = events
+    getResponse.data['pastBookedEvents'] = events
+
     buildResponse(getResponse, res)
 
   } catch (error) {

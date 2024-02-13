@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Managers/EventsManager.dart';
 import 'package:mountain_app/Models/Escursione.dart';
-import 'package:mountain_app/Views/EventsListView.dart';
+import 'package:mountain_app/Views/EventsGridView.dart';
 import 'package:mountain_app/Views/LottieAnimations/EmptyStateView.dart';
 import 'package:mountain_app/Views/LottieAnimations/LoadingAnimationView.dart';
 
@@ -42,7 +42,7 @@ class _SubscriptionsScreenState extends State<SubscriptionsScreen> {
           if (downEvents.isEmpty) {
             return EmptyStateView(text: "Non ci sono iscrizioni...");
           } else {
-            return EventsListView(escursioni: downEvents);
+            return EventsGridView(escursioni: downEvents);
           }
         },
       ),

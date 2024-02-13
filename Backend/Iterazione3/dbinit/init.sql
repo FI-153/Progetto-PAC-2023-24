@@ -5,7 +5,7 @@ CREATE TABLE event (
     place VARCHAR(255) NOT NULL,
     difficulty VARCHAR(255),
     date TIMESTAMP WITHOUT TIME ZONE,
-    description VARCHAR(255),
+    description TEXT,
     distance VARCHAR(255),
     height_evel VARCHAR(255),
     min_eight VARCHAR(255),
@@ -38,4 +38,4 @@ CREATE TABLE reservation (
 
 -- Inserisce utente admin
 INSERT INTO profile(id, first_name, last_name, email, password, phone, profile_role)
-VALUES (1, 'admin', 'admin', 'admin@admin.com', 'admin', '123', 'ADMIN');
+VALUES (0, 'admin', 'admin', 'admin@admin.com', 'admin', '123', 'ADMIN');

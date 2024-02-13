@@ -145,20 +145,21 @@ class _RegistrationViewState extends State<RegistrationView> {
                                   onPressed: () {
                                     if (_formKey.currentState!.validate()) {
                                       Utente utente = Utente(
-                                          -1,
-                                          "",
-                                          _nameFieldController.text,
-                                          _surnnameFieldController.text,
-                                          _emailFieldcontroller.text,
-                                          _passwordFieldcontroller.text,
-                                          true,
-                                          _codeFieldcontroller.text.isEmpty
-                                              ? false
-                                              : true,
-                                          [],
-                                          [],
-                                          0,
-                                          Uri(path: ''));
+                                        -1,
+                                        "",
+                                        _nameFieldController.text,
+                                        _surnnameFieldController.text,
+                                        _emailFieldcontroller.text,
+                                        _passwordFieldcontroller.text,
+                                        true,
+                                        _codeFieldcontroller.text.isEmpty
+                                            ? false
+                                            : true,
+                                        [],
+                                        [],
+                                        0,
+                                        "",
+                                      );
 
                                       Navigator.push(
                                         context,

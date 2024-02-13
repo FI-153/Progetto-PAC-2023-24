@@ -38,6 +38,25 @@ class UserManager {
     }
   }
 
+  Future<Utente> fetchUser(int id) async {
+    final response = await http
+        .get(Uri.parse('$_baseIpGateway/profiles/${id.toString()}'), headers: {
+      HttpHeaders.authorizationHeader: Utente.loggedUser.basicAuth
+    });
+
+    switch (response.statusCode) {
+      case 200:
+        var decoded = json.decode(response.body);
+        return Utente.fromJson(decoded);
+
+      case 401:
+        throw Exception('Non autorizzato');
+
+      default:
+        throw Exception('Fallimento');
+    }
+  }
+
   Future<Utente> addUser(Utente utente) async {
     var body = json.encode(utente.toJson());
 
