@@ -45,3 +45,4 @@ root
 pgAdmin
 readme
 admin
+sequence
