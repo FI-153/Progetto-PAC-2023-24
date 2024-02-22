@@ -47,8 +47,9 @@ class Utente {
         iscrizioniPassate = List.from(json['pastBookedEvents'] ?? []),
         esperienza = json['experience'] ?? 15,
         imgPath = randomizedProfileImage(),
-        basicAuth =
-            'Basic ${base64Encode(utf8.encode("$json['email']:$json['password']"))}';
+        basicAuth = 'Basic ${base64Encode(
+          utf8.encode("${json['email']}:${json['password']}"),
+        )}';
 
   Map<String, dynamic> toJson() => {
         "firstName": nome,
