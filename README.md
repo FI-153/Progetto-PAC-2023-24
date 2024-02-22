@@ -23,8 +23,6 @@
 
 ## Demo
 Una demo del progetto è disponibile all'indirizzo <a href="http://165.227.152.216:9000" target="_blank" rel="noreferrer noopener"> http://165.227.152.216:9000 </a>. Per accedere è possibile usare uno dei profili generati come mockup con ChatGPT all'iterazione 3. Maggiori dettagli sono disponibili nella guida utente dell'iterazione 4.
-> [!NOTE]
-> Trattandosi di un app pensata per mobile consigliamo di stringere la finestra del browser per un'esperienza migliore. 
 
 ## Quickstart
 Potete eseguire il progetto con il seguente comando, attraverso curl e docker-compose. Il file "docker-compose.yml" verrà scaricato in locale e poi eseguito
