@@ -23,6 +23,8 @@
 
 ## Demo
 Una demo del progetto è disponibile all'indirizzo <a href="http://165.227.152.216:9000" target="_blank" rel="noreferrer noopener"> http://165.227.152.216:9000 </a>. Per accedere è possibile usare uno dei profili generati come mockup con ChatGPT all'iterazione 3. Maggiori dettagli sono disponibili nella guida utente dell'iterazione 4.
+> [!IMPORTANT]
+> Update: la demo non è più online avendo terminato il corso di PAC a Febbraio 2024, tuttavia rimane possibile lanciare il progetto con docker-compose come descritto nella documentazione; sarà necessario cambiare 'deployAddress' nel codice della app con l'indirizzo della vostra macchina virtuale.
 
 ## Quickstart
 Potete eseguire il progetto con il seguente comando, attraverso curl e docker-compose. Il file "docker-compose.yml" verrà scaricato in locale e poi eseguito
